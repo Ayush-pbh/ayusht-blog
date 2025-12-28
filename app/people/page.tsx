@@ -12,18 +12,14 @@ export default function People() {
   return (
     <div className="space-y-4">
       <H1>People</H1>
-      <p>
-        This list is a collection of the thinkers, writers, and builders who
-        have had the greatest influence on my life. Their ideas have been
-        faithful companions.
-      </p>
+      <p>Their ideas have been faithful companions.</p>
       <Ul>
         <Li>
           <InlineLink href="https://en.wikipedia.org/wiki/Albert_Einstein">
             Albert Einstein
           </InlineLink>
         </Li>
-        <Li>
+        {/* <Li>
           <InlineLink href="https://andymatuschak.org/">
             Andy Matuschak
           </InlineLink>{" "}
@@ -260,7 +256,7 @@ export default function People() {
             Vitalik Buterin
           </InlineLink>{" "}
           (<InlineLink href="https://x.com/vitalikbuterin">twitter</InlineLink>)
-        </Li>
+        </Li> */}
       </Ul>
     </div>
   );

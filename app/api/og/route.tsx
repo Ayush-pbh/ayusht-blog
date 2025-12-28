@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     const hasTitle = searchParams.has("title");
     const title = hasTitle
       ? searchParams.get("title")?.slice(0, 100)
-      : "Josh Bradley";
+      : "Ayush Tripathi";
 
     return new ImageResponse(
       (

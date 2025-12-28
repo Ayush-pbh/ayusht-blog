@@ -13,17 +13,17 @@ export default function Principles() {
     <div className="space-y-4">
       <H1>Principles</H1>
       <p>
-        Inspired by{" "}
+        {/* Inspired by{" "}
         <InlineLink href="https://www.principles.com/">Ray Dalio</InlineLink>,{" "}
         <InlineLink href="https://www.stripe.press/poor-charlies-almanack">
           Charlie Munger
         </InlineLink>
-        , and <InlineLink href="https://nav.al/">Naval Ravikant</InlineLink>, I
-        am recording the principles which guide me through my decision making.
+        , and <InlineLink href="https://nav.al/">Naval Ravikant</InlineLink>, I */}
+        principles which guide me through my decision making.
       </p>
       <Ul>
         <Li>Occam's Razor</Li>
-        <Li>Hanlon's Razor</Li>
+        {/* <Li>Hanlon's Razor</Li>
         <Li>Antifragility</Li>
         <Li>Metcalfe's Law</Li>
         <Li>Moore's Law</Li>
@@ -134,7 +134,7 @@ export default function Principles() {
         <Li>Virality</Li>
         <Li>Death</Li>
         <Li>Imerpmanence</Li>
-        <Li>Unconditional Love</Li>
+        <Li>Unconditional Love</Li> */}
       </Ul>
     </div>
   );

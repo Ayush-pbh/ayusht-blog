@@ -9,72 +9,12 @@ export function getAllPosts(): Post[] {
     //    "The economic era we know is ending. This is a natural cycle that all things go through, celebrate what we had and prepare yourself for a new reality. A reality where AI has no boundaries.",
     //  date: "May 21, 2025",
     //},
+
     {
-      slug: "rebuilding-this-website",
-      title: "Rebuilding This Website",
-      description: "The design choices behind building a custom React blog.",
-      date: "Mar 20, 2025",
-    },
-    {
-      slug: "reframing-ambition",
-      title: "Reframing Ambition",
-      description:
-        "Ambition is not about achieving goals, it's about becoming the best version of yourself.",
-      date: "Mar 12, 2025",
-    },
-    {
-      slug: "symbiotic-technology",
-      title: "Symbiotic Technology",
-      description:
-        "Technology grows exponentially but understanding grows linearly. The difference is our collective knowledge gap.",
-      date: "Feb 7, 2025",
-    },
-    {
-      slug: "lessons-on-startups",
-      title: "Lessons on Startups",
-      description: "Lessons learned from building a startup.",
-      date: "Dec 4, 2024",
-    },
-    {
-      slug: "why-i-founded-celest",
-      title: "Why I Founded Celest",
-      description:
-        "Why I founded Celest and what I learned from the experience.",
-      date: "Nov 21, 2024",
-    },
-    {
-      slug: "efficient-ideas",
-      title: "Efficient Ideas",
-      description: "The most impactful ideas are efficient, like a bubble.",
-      date: "Jan 12, 2022",
-    },
-    {
-      slug: "goodbye-procore",
-      title: "Goodbye, Procore",
-      description:
-        "Reflecting on what I learned during my 4 years working for Procore.",
-      date: "Nov 21, 2021",
-    },
-    {
-      slug: "simulating-object-collisions",
-      title: "Simulating Object Collisions",
-      description:
-        "Simulating object collisions is a rewarding way to learn the basics of HTML canvas and physics simulation.",
-      date: "Jul 25, 2020",
-    },
-    {
-      slug: "understanding-the-power-of-lisp",
-      title: "Understanding the Power of LISP",
-      description:
-        "Notable programmers describe understanding and coding in LISP as a semi-religious experience. What gives the language this power?",
-      date: "Apr 3, 2020",
-    },
-    {
-      slug: "building-this-website",
-      title: "Building This Website",
-      description:
-        "This site is tiny and powerful, featuring schema markup and ServiceWorkers. Here is what I learned while building it.",
-      date: "Jan 27, 2020",
+      slug: "test-blog",
+      title: "Test Blog",
+      description: "Just a test blog page.",
+      date: "Dec 28, 2025",
     },
   ];
 }

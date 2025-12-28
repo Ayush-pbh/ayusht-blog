@@ -28,3 +28,6 @@ To add a new blog post:
 1. Create a new React component in the `components/posts/` directory
 2. Add the post metadata to the `getAllPosts` function in `lib/posts.ts`
 3. The post will automatically appear on the homepage and be accessible via its slug
+
+
+> Thanks to Josh Bradley https://github.com/joshuabradley012/joshbradley-blog
