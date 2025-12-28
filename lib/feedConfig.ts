@@ -1,14 +1,14 @@
 // Feed configuration shared across all feed formats
 export const feedConfig = {
   // Site information
-  siteTitle: "Josh Bradley",
+  siteTitle: "Ayush Tripathi",
   siteDescription:
-    "A blog about philosophy, technology, spirituality, business, and politics.",
-  siteUrl: "https://joshbradley.me",
+    "A blog about philosophy, technology, spirituality, and business.",
+  siteUrl: "https://ayusht.me",
 
   // Author information
-  authorName: "Josh Bradley",
-  authorEmail: "hello@joshbradley.me",
+  authorName: "Ayush Tripathi",
+  authorEmail: "hello@ayusht.me",
 
   // Feed paths
   feedPaths: {
@@ -24,7 +24,7 @@ export const feedConfig = {
 
   // Other settings
   language: "en",
-  copyright: `All rights reserved ${new Date().getFullYear()}, Josh Bradley`,
+  copyright: `All rights reserved ${new Date().getFullYear()}, Ayush Tripathi`,
 };
 
 // Helper function to create feed options

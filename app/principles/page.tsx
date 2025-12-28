@@ -5,7 +5,7 @@ import InlineLink from "@/components/InlineLink";
 
 export const metadata: Metadata = {
   title: "Principles",
-  description: "The principles which I live my life by.",
+  description: "The principles which guide me through my decision making.",
 };
 
 export default function Principles() {
