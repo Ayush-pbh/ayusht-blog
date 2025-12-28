@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
               justifyContent: "center",
             }}
           >
-            §
+            अ
           </div>
           <div
             style={{
