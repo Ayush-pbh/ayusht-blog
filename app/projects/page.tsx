@@ -1,20 +1,6 @@
 import type { Metadata } from "next";
-// import Link from "next/link";
-// import Image from "next/image";
-import { H1 } from "@/components/Headings";
-// import InlineLink from "@/components/InlineLink";
-// import { Ul, Li } from "@/components/List";
-// import {
-//   Assignar,
-//   Celest,
-//   Jobsite,
-//   Jordyhelps,
-//   Kojo,
-//   Procore,
-//   Silo,
-// } from "@/icons";
-// import cd5 from "@/public/images/cd5.png";
-// import pacifica from "@/public/images/pacifica.png";
+import Link from "next/link";
+import { getAllProjects } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -23,11 +9,25 @@ export const metadata: Metadata = {
 };
 
 export default function Projects() {
-  return (
-    <div className="space-y-4">
-      <H1>Projects</H1>
+  const projects = getAllProjects();
 
-      <p>Coming Soon.</p>
+  return (
+    <div className="space-y-1">
+      {projects.map((project) => (
+        <Link
+          key={project.slug}
+          href={`/projects/${project.slug}`}
+          className="group relative flex justify-between transition-colors hover:text-neutral-900"
+        >
+          <div className="absolute top-[10px] left-0 w-full border-t border-neutral-200 transition-colors group-hover:border-neutral-900" />
+          <h2 className="relative block bg-neutral-50 pr-2 text-left">
+            {project.title}
+          </h2>
+          <time className="relative ml-2 block bg-neutral-50 pl-2 whitespace-nowrap text-neutral-500 transition-colors group-hover:text-neutral-900">
+            {project.date}
+          </time>
+        </Link>
+      ))}
     </div>
   );
 }

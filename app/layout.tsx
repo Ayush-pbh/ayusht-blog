@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Lora, Inter, JetBrains_Mono } from "next/font/google";
 import { unstable_ViewTransition as ViewTransition } from "react";
 import { feedConfig } from "@/lib/feedConfig";
@@ -20,6 +20,14 @@ const lora = Lora({
   variable: "--font-lora",
   style: ["normal", "italic"],
 });
+
+// Keeps the mobile browser chrome in step with the page background.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf9f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#13120f" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(feedConfig.siteUrl),

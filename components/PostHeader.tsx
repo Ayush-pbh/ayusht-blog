@@ -1,7 +1,7 @@
-import type { Post } from "@/types";
+import type { Post, Project } from "@/types";
 import { H1 } from "@/components/Headings";
 
-export function PostHeader({ post }: { post: Post }) {
+export function PostHeader({ post }: { post: Post | Project }) {
   return (
     <header className="mb-8 flex justify-between">
       <H1 className="mb-0">{post.title}</H1>

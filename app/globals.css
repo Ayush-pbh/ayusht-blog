@@ -36,7 +36,46 @@
   --color-blue-950: #192038;
 }
 
+/*
+ * Dark mode follows the system setting — there is no toggle.
+ *
+ * The whole site is expressed in one neutral ramp (50 = page background,
+ * 900 = strongest text), so reversing the ramp flips every surface, border
+ * and text colour at once. Utilities compile to var(--color-neutral-*), and
+ * these unlayered declarations outrank Tailwind's @layer theme, so no
+ * component needs a dark: variant. Keep the ramp semantic and this holds.
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-neutral-50: #13120f;
+    --color-neutral-100: #1c1a17;
+    --color-neutral-200: #2d2a26;
+    --color-neutral-300: #3f3b36;
+    --color-neutral-400: #6a665f;
+    --color-neutral-500: #928d85;
+    --color-neutral-600: #aaa49b;
+    --color-neutral-700: #c3bdb3;
+    --color-neutral-800: #dcd7cd;
+    --color-neutral-900: #f5f2ec;
+    --color-neutral-950: #faf9f5;
+  }
+
+  /*
+   * Shiki bakes its colours inline at render time, so the dual-theme build
+   * emits a --shiki-dark custom property per token for us to swap in.
+   */
+  [data-rehype-pretty-code-figure] span,
+  code span {
+    color: var(--shiki-dark, inherit) !important;
+  }
+}
+
 @layer base {
+  :root {
+    /* Lets native scrollbars, form controls and the canvas follow suit. */
+    color-scheme: light dark;
+  }
+
   body {
     background-color: var(--color-neutral-50);
   }
@@ -156,6 +195,35 @@
 
   .katex-display::-webkit-scrollbar-thumb {
     @apply rounded-none bg-neutral-200;
+  }
+}
+
+@layer base {
+  /*
+   * Recharts paints its own greys and a white tooltip. Point them at the
+   * neutral ramp so charts follow the theme like everything else.
+   */
+  .recharts-cartesian-grid line {
+    stroke: var(--color-neutral-200);
+  }
+
+  .recharts-cartesian-axis-line,
+  .recharts-cartesian-axis-tick-line {
+    stroke: var(--color-neutral-300);
+  }
+
+  .recharts-cartesian-axis-tick-value {
+    fill: var(--color-neutral-500);
+  }
+
+  .recharts-default-tooltip {
+    background-color: var(--color-neutral-50) !important;
+    border-color: var(--color-neutral-200) !important;
+    color: var(--color-neutral-900);
+  }
+
+  .recharts-tooltip-item {
+    color: var(--color-neutral-800) !important;
   }
 }
 

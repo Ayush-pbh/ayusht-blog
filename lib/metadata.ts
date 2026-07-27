@@ -1,23 +1,33 @@
 import type { Metadata } from "next";
-import type { Post } from "@/types";
+import type { Post, Project } from "@/types";
 import { feedConfig } from "@/lib/feedConfig";
 
-export function createMetadata(post: Post): Metadata {
+/**
+ * Builds OG metadata for a post or a project. `basePath` is the route segment
+ * the item lives under, so a project shares this helper without pretending to
+ * live at /thoughts.
+ */
+export function createMetadata(
+  item: Post | Project,
+  basePath: string = "/thoughts",
+): Metadata {
   return {
-    title: post.title,
-    description: post.description,
+    title: item.title,
+    description: item.description,
     openGraph: {
-      title: post.title,
-      description: post.description,
+      title: item.title,
+      description: item.description,
       type: "article",
-      publishedTime: post.date,
-      url: `${feedConfig.siteUrl}/thoughts/${post.slug}`,
+      publishedTime: item.date,
+      url: `${feedConfig.siteUrl}${basePath}/${item.slug}`,
       images: [
         {
-          url: post.coverImage || `/api/og?title=${post.title}`,
+          url:
+            item.coverImage ||
+            `/api/og?title=${encodeURIComponent(item.title)}`,
           width: 1200,
           height: 630,
-          alt: post.title,
+          alt: item.title,
         },
       ],
     },

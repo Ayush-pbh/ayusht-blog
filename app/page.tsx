@@ -8,17 +8,22 @@ export default function Home() {
         <H1>Ayush Tripathi</H1>
 
         <p>
-          I build products and write about startups, SaaS, and growth. I love
-          reading, making art, and traveling. I am a curious individual, excited
-          by new learnings, and passionate about helping others grow.
+          I'm a <strong>self-taught engineer</strong> working on AI systems —
+          agents, LLM infrastructure, and the <em>unglamorous plumbing</em> that
+          makes them fast and cheap enough to actually ship. Currently leading{" "}
+          <strong>applied AI</strong> at a startup.
         </p>
 
         <p>
-          I'm a self-taught engineer, ex-Medial Platform Engineer, and I founded
-          as few startups RaayRocket and GreyProjectStudios, learning about
-          product development, marketing, and growth along the way. Currently I
-          am working on AI ML Implementations at a startup in Stealth Mode(
-          Launching Soon! ).
+          Previously a <strong>platform engineer at Medial</strong>. Before that
+          I founded <strong>RaayRocket</strong> and{" "}
+          <strong>Grey Project Studio</strong>, where I learned product,
+          marketing, and growth — <em>mostly by getting them wrong first</em>.
+        </p>
+
+        <p>
+          I read, make art, and travel. I write here about startups, systems,
+          and <em>whatever I'm currently obsessed with</em>.
         </p>
       </div>
       <hr />

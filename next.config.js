@@ -23,6 +23,16 @@ const nextConfig = {
   experimental: {
     viewTransition: true,
   },
+  images: {
+    remotePatterns: [
+      // Goodreads book covers
+      { protocol: "https", hostname: "m.media-amazon.com" },
+      // YouTube thumbnails
+      { protocol: "https", hostname: "i.ytimg.com" },
+      // Article OG images
+      { protocol: "https", hostname: "bun.com" },
+    ],
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/i,
