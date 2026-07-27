@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Lora, Inter, JetBrains_Mono } from "next/font/google";
 import { unstable_ViewTransition as ViewTransition } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { feedConfig } from "@/lib/feedConfig";
 import Nav from "@/components/Nav";
 import "./globals.css";
@@ -127,6 +128,7 @@ export default function RootLayout({
             </ViewTransition>
           </main>
         </div>
+        <Analytics />
       </body>
     </html>
   );
