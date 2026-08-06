@@ -37,16 +37,23 @@
 }
 
 /*
- * Dark mode follows the system setting — there is no toggle.
+ * Dark mode follows the system setting until the reader overrides it with the
+ * nav toggle, which writes `data-theme="light" | "dark"` onto <html> (see
+ * `components/ThemeToggle.tsx`). Removing the attribute hands control back to
+ * the system, and the media query below is scoped so it stays out of the way
+ * of an explicit light choice.
  *
  * The whole site is expressed in one neutral ramp (50 = page background,
  * 900 = strongest text), so reversing the ramp flips every surface, border
  * and text colour at once. Utilities compile to var(--color-neutral-*), and
  * these unlayered declarations outrank Tailwind's @layer theme, so no
  * component needs a dark: variant. Keep the ramp semantic and this holds.
+ *
+ * The two dark blocks are deliberate duplicates: CSS can't share one
+ * declaration list between a media query and a selector. Edit them together.
  */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --color-neutral-50: #13120f;
     --color-neutral-100: #1c1a17;
     --color-neutral-200: #2d2a26;
@@ -64,9 +71,60 @@
    * Shiki bakes its colours inline at render time, so the dual-theme build
    * emits a --shiki-dark custom property per token for us to swap in.
    */
-  [data-rehype-pretty-code-figure] span,
-  code span {
+  :root:not([data-theme="light"]) [data-rehype-pretty-code-figure] span,
+  :root:not([data-theme="light"]) code span {
     color: var(--shiki-dark, inherit) !important;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-neutral-50: #13120f;
+  --color-neutral-100: #1c1a17;
+  --color-neutral-200: #2d2a26;
+  --color-neutral-300: #3f3b36;
+  --color-neutral-400: #6a665f;
+  --color-neutral-500: #928d85;
+  --color-neutral-600: #aaa49b;
+  --color-neutral-700: #c3bdb3;
+  --color-neutral-800: #dcd7cd;
+  --color-neutral-900: #f5f2ec;
+  --color-neutral-950: #faf9f5;
+}
+
+:root[data-theme="dark"] [data-rehype-pretty-code-figure] span,
+:root[data-theme="dark"] code span {
+  color: var(--shiki-dark, inherit) !important;
+}
+
+/*
+ * The 1s ramp crossfade, applied only while the toggle is switching themes —
+ * `components/ThemeToggle.tsx` adds `.theme-transition` to <html>, then strips
+ * it when the transition ends. Scoping it to that window keeps colours from
+ * animating on first paint and on every ordinary hover.
+ *
+ * !important is what makes the page move as one piece: without it, anything
+ * carrying Tailwind's `transition-colors` would finish its own 150ms ahead of
+ * everything else. It only holds for the second the class is on.
+ */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition:
+    background-color 1s ease,
+    border-color 1s ease,
+    color 1s ease,
+    fill 1s ease,
+    stroke 1s ease,
+    text-decoration-color 1s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition: none !important;
   }
 }
 
@@ -74,6 +132,12 @@
   :root {
     /* Lets native scrollbars, form controls and the canvas follow suit. */
     color-scheme: light dark;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
   }
 
   body {

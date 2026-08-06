@@ -20,6 +20,11 @@ export default function Thoughts() {
           <div className="absolute top-[10px] left-0 w-full border-t border-neutral-200 transition-colors group-hover:border-neutral-900" />
           <h2 className="relative block bg-neutral-50 pr-2 text-left">
             {post.title}
+            {post.draft && (
+              <span className="text-2xs ml-2 font-mono text-neutral-400 uppercase">
+                draft
+              </span>
+            )}
           </h2>
           <time className="relative ml-2 block bg-neutral-50 pl-2 whitespace-nowrap text-neutral-500 transition-colors group-hover:text-neutral-900">
             {post.date}

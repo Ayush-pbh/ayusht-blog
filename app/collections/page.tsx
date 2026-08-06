@@ -6,7 +6,7 @@ import { getAllCollections } from "@/lib/collections";
 export const metadata: Metadata = {
   title: "Collections",
   description:
-    "Books, videos, articles, and research papers worth returning to.",
+    "Books, videos, articles, research papers, and images worth returning to.",
 };
 
 export default function Collections() {

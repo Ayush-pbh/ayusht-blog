@@ -26,11 +26,15 @@ Adding a post means three coordinated edits:
 
 1. Add an entry to `getAllPosts()` in `lib/posts.ts`.
 2. Create `app/thoughts/<slug>/page.tsx`.
-3. In that page: `const post = getPostBySlug("<slug>")`, export `generateMetadata` returning `createMetadata(post)`, and render `<BlogJsonLd post={post} />` + `<PostHeader post={post} />` before the body. See `app/thoughts/test-blog/page.tsx` as the template.
+3. In that page: `const post = getPostBySlug("<slug>")`, export `generateMetadata` returning `createMetadata(post)`, and render `<BlogJsonLd post={post} />` + `<PostHeader post={post} />` before the body. See `app/thoughts/colophon/page.tsx` as the template.
+
+`app/thoughts/specimen/page.tsx` renders every post component on one page — headings, lists, quotes, code, maths, footnotes/sidenotes, figures, charts, canvas. It is kept `draft: true` deliberately, so it stays out of the index and feeds while remaining live at its URL. Check it after changing anything in `components/`.
 
 `getPostBySlug` **throws** on an unknown slug, so a page whose slug isn't in `lib/posts.ts` fails the build. The slug in `posts.ts` must match the directory name — nothing enforces this.
 
 Because `getAllPosts()` is the single source of truth, adding an entry automatically propagates to the `/thoughts` index, `app/sitemap.ts`, and the three feed routes.
+
+`draft: true` on a post keeps it out of all four in production and marks it `noindex`, while the page still builds and answers on its URL. `getAllPosts()` filters drafts; `getPostBySlug()` deliberately does not, so the draft's own page still resolves. Drafts stay visible in `npm run dev` and on Vercel preview deployments.
 
 The README's instruction to put posts in `components/posts/` is stale — that directory does not exist.
 
@@ -47,6 +51,8 @@ Post URLs are `/thoughts/<slug>` — hardcoded in `feedConfig.ts`, `metadata.ts`
 Tailwind v4 with no `tailwind.config` — the design system is CSS in `app/globals.css`: an `@theme` block overrides the `neutral` and `blue` palettes with warm off-white tones, defines the three font vars (Inter sans / Lora serif / JetBrains Mono), and adds an `xs` (32rem) breakpoint and `text-2xs`. The `@layer base` block also styles `rehype-pretty-code` output and KaTeX by attribute selector, so code-block and math appearance is controlled there rather than in the components.
 
 Note `em`/`i`/`q` are globally restyled to serif italic — the nav deliberately uses `<em>` for its links.
+
+Dark mode reverses that same `neutral` ramp, so no component carries a `dark:` variant. It follows `prefers-color-scheme` until `components/ThemeToggle.tsx` (in the nav) writes `data-theme="light" | "dark"` onto `<html>`; a blocking script in `app/layout.tsx` replays the stored choice before first paint. The dark ramp is written twice in `globals.css` — once in the media query, once under `[data-theme="dark"]` — because CSS can't share a declaration list across the two. Edit them together.
 
 Always compose classes with `cn()` from `lib/utils.ts` (clsx + tailwind-merge) so caller `className` props override defaults.
 
@@ -65,5 +71,9 @@ Page transitions use React's `unstable_ViewTransition` in `app/layout.tsx` with 
 SVGs in `icons/` are imported as React components via `@svgr/webpack` (configured in `next.config.js`) and re-exported from `icons/index.ts`. Import path alias is `@/*` → repo root.
 
 `components/ui/PostHeader.tsx` is a byte-identical duplicate of `components/PostHeader.tsx`; pages import the top-level one.
+
+Quotes live as data in `lib/quotes.ts`, not as JSX. The page is `force-dynamic` so `getShuffledQuotes()` reorders them on every request.
+
+`lib/collections.ts` drives `/collections`. The `images` collection uses `layout: "gallery"` — masonry tiles that open `components/Lightbox.tsx`. Its images are static imports from `public/images/gallery/`, which is what gives Next the dimensions the masonry and the zoom both need.
 
 `tasks.md` is the author's running backlog of planned posts and features.

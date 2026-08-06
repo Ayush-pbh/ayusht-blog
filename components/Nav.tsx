@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 
 // media? questions? links?
 const links = [
@@ -56,6 +57,9 @@ export default function Nav() {
             </Link>
           </li>
         ))}
+        <li className="xs:mt-4">
+          <ThemeToggle />
+        </li>
       </menu>
     </nav>
   );

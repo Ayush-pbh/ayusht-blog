@@ -11,9 +11,14 @@ export function createMetadata(
   item: Post | Project,
   basePath: string = "/thoughts",
 ): Metadata {
+  const draft = "draft" in item && item.draft;
+
   return {
     title: item.title,
     description: item.description,
+    // Unlisted, not unreachable: the page answers on its URL, but nothing
+    // should pull it into search results before it is finished.
+    ...(draft && { robots: { index: false, follow: false } }),
     openGraph: {
       title: item.title,
       description: item.description,

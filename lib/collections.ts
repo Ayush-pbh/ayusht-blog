@@ -1,4 +1,6 @@
 import type { Collection, CollectionItem } from "@/types";
+import paleBlueDot from "@/public/images/gallery/pale-blue-dot.webp";
+import bhairaviDevi from "@/public/images/gallery/bhairavi-devi-with-shiva.webp";
 
 /** Pull the video id out of a youtu.be or youtube.com/watch URL. */
 function youtubeId(href: string): string | undefined {
@@ -37,6 +39,12 @@ function withThumbnails(items: CollectionItem[]): CollectionItem[] {
 // Adding a category is another object in this array; adding an item is another
 // object in `items`. Book covers and article art need an explicit `image`
 // (the OG image from the page); YouTube thumbnails are derived from the URL.
+//
+// Images are the exception: drop the file in `public/images/gallery/`, import
+// it at the top of this file, and pass the import as `image`. The static import
+// is what gives Next the real width and height, which the masonry grid and the
+// lightbox both need. Don't hotlink gallery images — remote hosts have to be
+// whitelisted in `next.config.js` and they rot.
 const collections: Collection[] = [
   {
     slug: "books",
@@ -180,6 +188,29 @@ const collections: Collection[] = [
         title: "MemGPT: Towards LLMs as Operating Systems",
         author: "Packer, Wooders, Lin, Fang et al.",
         href: "https://arxiv.org/abs/2310.08560",
+      },
+    ],
+  },
+  {
+    slug: "images",
+    title: "Images",
+    layout: "gallery",
+    items: [
+      {
+        title: "Pale Blue Dot",
+        author: "Voyager 1, 14 February 1990",
+        href: "https://science.nasa.gov/resource/voyager-pale-blue-dot-download/",
+        image: paleBlueDot,
+        description:
+          "Voyager 1 turned around for a last look from 3.7 billion miles out and caught Earth as a crescent 0.12 pixel wide. The beams it appears to hang in are an artifact — sunlight scattered inside the camera, which was pointed too near the Sun. Thirty-four minutes later the cameras were shut off for good. Carl Sagan had argued for years to have the picture taken, and wrote afterwards that everyone you have ever heard of lived out their life on “a mote of dust suspended in a sunbeam” — that every war and every conviction of being at the centre of things happened on that one pixel.",
+      },
+      {
+        title: "The Goddess Bhairavi Devi with Shiva",
+        author: "Attributed to Payag, Mughal, c. 1630–35",
+        href: "https://www.metmuseum.org/art/collection/search/457743",
+        image: bhairaviDevi,
+        description:
+          "A cremation ground. Bhairavi sits on a corpse in a skirt and garland of skulls; three of her four hands hold instruments of destruction — a severed head, a sword, a trident — while the fourth is raised in blessing. Shiva is the ash-grey figure beside her, attending in the guise of a devotee. What makes it strange is the treatment: a Mughal atelier applying naturalist patience to a tantric subject, every strand of smoke drawn individually, jackals working the margins. The gold border is the same desolate ground, continued.",
       },
     ],
   },

@@ -95,8 +95,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning covers the `data-theme` the script below adds:
+    // the server can't know the stored choice, so <html> legitimately differs
+    // from the SSR output. It only silences this element's own attributes,
+    // not anything nested inside it.
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/*
+          Applies a stored theme choice before first paint, so an explicit
+          light/dark pick never flashes the other one. No stored value leaves
+          the attribute off and the system preference in charge.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
+          }}
+        />
         <link
           rel="alternate"
           type="application/rss+xml"
