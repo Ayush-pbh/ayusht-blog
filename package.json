@@ -7,9 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:init": "node --env-file=.env.local scripts/init-signups.mjs",
+    "signups": "node --env-file=.env.local scripts/signups.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/og": "^0.6.5",
     "clsx": "^2.1.1",

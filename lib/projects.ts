@@ -3,6 +3,22 @@ import type { Project } from "@/types";
 export function getAllProjects(): Project[] {
   return [
     {
+      slug: "meeseeks",
+      title: "Mr. Meeseeks",
+      description:
+        "Mention it in any Slack thread and a dedicated Claude agent spins up for that thread alone — its own container, its own memory — then deletes itself when the job is done.",
+      date: "2026",
+      waitlist: true,
+    },
+    {
+      slug: "silt",
+      title: "Silt",
+      description:
+        "Catches agent failures in production, then turns each one into a test that blocks the next deploy.",
+      date: "2026",
+      waitlist: true,
+    },
+    {
       slug: "postpub",
       title: "PostPub",
       description:
@@ -13,6 +29,16 @@ export function getAllProjects(): Project[] {
       coverImage: "/images/postpub-og.png",
     },
   ];
+}
+
+/**
+ * Where the projects index and the sitemap should send someone. Waitlist
+ * projects have no project page of their own — the landing page is the page.
+ */
+export function projectHref(project: Project): string {
+  return project.waitlist
+    ? `/waitlist/${project.slug}`
+    : `/projects/${project.slug}`;
 }
 
 export function getProjectBySlug(slug: string): Project {

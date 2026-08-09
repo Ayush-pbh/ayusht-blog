@@ -1,5 +1,5 @@
 import { getAllPosts } from "@/lib/posts";
-import { getAllProjects } from "@/lib/projects";
+import { getAllProjects, projectHref } from "@/lib/projects";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -14,8 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Early-access projects have no project page — projectHref points the
+  // sitemap at the landing page instead, so nothing here 404s.
   const projectEntries = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
+    url: `${baseUrl}${projectHref(project)}`,
     lastModified: new Date(project.date),
     changeFrequency: "monthly" as const,
     priority: 0.8,
