@@ -18,6 +18,13 @@ const posts: Post[] = [
   //},
 
   {
+    slug: "seeing-music",
+    title: "Seeing Music",
+    description:
+      "Music has always wanted a body — a dancer, a lamp, a spinning record. On why I built Dhun, and why I will keep building it for an audience of one.",
+    date: "Aug 31, 2026",
+  },
+  {
     slug: "colophon",
     title: "Colophon",
     description:

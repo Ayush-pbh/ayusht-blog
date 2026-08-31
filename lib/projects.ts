@@ -3,6 +3,14 @@ import type { Project } from "@/types";
 export function getAllProjects(): Project[] {
   return [
     {
+      slug: "dhun",
+      title: "Dhun",
+      description:
+        "A 1.4 MB native macOS app that turns whatever your music is playing into a floating piece of your desktop — album art, a spinning record, or a full-screen visualizer driven by the actual sound.",
+      date: "2026",
+      href: "https://github.com/Ayush-pbh/dhun",
+    },
+    {
       slug: "meeseeks",
       title: "Mr. Meeseeks",
       description:
