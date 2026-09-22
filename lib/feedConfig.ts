@@ -3,8 +3,13 @@ export const feedConfig = {
   // Site information
   siteTitle: "Ayush Tripathi",
   siteDescription:
-    "A blog about philosophy, technology, spirituality, and business.",
+    "Agent systems in production — architecture, infra, latency, cost. Writing about what actually works.",
   siteUrl: "https://ayusht.me",
+
+  // One source for the X profile: og/twitter metadata, the about page and the
+  // footer under every article all read these rather than hardcoding a handle.
+  xHandle: "@ayushthought",
+  xUrl: "https://x.com/ayushthought",
 
   // Author information
   authorName: "Ayush Tripathi",

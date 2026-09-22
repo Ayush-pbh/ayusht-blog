@@ -1,5 +1,6 @@
 import InlineLink from "@/components/InlineLink";
 import { H1 } from "@/components/Headings";
+import { feedConfig } from "@/lib/feedConfig";
 
 export default function Home() {
   return (
@@ -28,7 +29,7 @@ export default function Home() {
       </div>
       <hr />
       <div className="flex flex-wrap gap-4 text-xs">
-        <InlineLink href="https://x.com/ayushthought">Twitter</InlineLink>
+        <InlineLink href={feedConfig.xUrl}>Twitter</InlineLink>
         <InlineLink href="https://github.com/Ayush-pbh">GitHub</InlineLink>
         <InlineLink href="https://www.linkedin.com/in/ayushpbh/">
           LinkedIn

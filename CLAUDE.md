@@ -32,7 +32,11 @@ Adding a post means three coordinated edits:
 
 `getPostBySlug` **throws** on an unknown slug, so a page whose slug isn't in `lib/posts.ts` fails the build. The slug in `posts.ts` must match the directory name — nothing enforces this.
 
-Because `getAllPosts()` is the single source of truth, adding an entry automatically propagates to the `/thoughts` index, `app/sitemap.ts`, and the three feed routes.
+Because `getAllPosts()` is the single source of truth, adding an entry automatically propagates to the `/thoughts` index, `app/sitemap.ts`, and the three feed routes. It sorts `pinned` posts first, then newest-first by `date`, so the position of an entry in the array does not matter.
+
+`getPostBySlug` also attaches `readingTime`, estimated by `lib/readingTime.ts`, which reads the post's own `page.tsx` at build time and counts the prose left after the code is stripped out. `PostHeader` renders it next to the date. Set `readingTime` explicitly on the post to override the estimate; it is deliberately absent from `getAllPosts()`, so the index and the feeds never trigger a file read.
+
+Articles do not render their own footer — `SiteChrome` appends `components/PostFooter.tsx` on any `/thoughts/<slug>` route, so the X link and the back-links appear on a new post with no extra edit.
 
 `draft: true` on a post keeps it out of all four in production and marks it `noindex`, while the page still builds and answers on its URL. `getAllPosts()` filters drafts; `getPostBySlug()` deliberately does not, so the draft's own page still resolves. Drafts stay visible in `npm run dev` and on Vercel preview deployments.
 
@@ -40,9 +44,9 @@ The README's instruction to put posts in `components/posts/` is stale — that d
 
 ### Feeds and metadata
 
-`lib/feedConfig.ts` holds all site-level identity (title, URL, author, feed paths, copyright) plus `createFeedOptions()` / `createFeedItems()`. The three routes `app/api/rss`, `app/api/atom`, `app/api/feed` are thin wrappers that differ only in the `feed.rss2()` / `.atom1()` / `.json1()` call and content type. Change site identity in `feedConfig.ts`, not in the routes or `app/layout.tsx`.
+`lib/feedConfig.ts` holds all site-level identity (title, URL, description, author, X handle and profile URL, feed paths, copyright) plus `createFeedOptions()` / `createFeedItems()`. The three routes `app/api/rss`, `app/api/atom`, `app/api/feed` are thin wrappers that differ only in the `feed.rss2()` / `.atom1()` / `.json1()` call and content type. Change site identity in `feedConfig.ts`, not in the routes or `app/layout.tsx`.
 
-`lib/metadata.ts#createMetadata` builds per-post OG metadata and falls back to the dynamic OG image at `app/api/og/route.tsx` (`@vercel/og`, edge runtime) when a post has no `coverImage`.
+`lib/metadata.ts#createMetadata` builds per-post OG **and** Twitter/X card metadata plus a canonical URL, and falls back to the dynamic OG image at `app/api/og/route.tsx` (`@vercel/og`, edge runtime) when a post has no `coverImage`. The X card is stated explicitly rather than left to fall back on OG, so a shared link shows the post's own title and description. Site-wide defaults live in `app/layout.tsx` and read from `feedConfig`.
 
 Post URLs are `/thoughts/<slug>` — hardcoded in `feedConfig.ts`, `metadata.ts`, `sitemap.ts`, and `BlogJsonLd`. `next.config.js` keeps permanent redirects from the old flat URLs.
 

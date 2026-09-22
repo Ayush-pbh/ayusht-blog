@@ -3,6 +3,7 @@ import { H1 } from "@/components/Headings";
 
 export function PostHeader({ post }: { post: Post | Project }) {
   const draft = "draft" in post && post.draft;
+  const readingTime = "readingTime" in post ? post.readingTime : undefined;
 
   return (
     <header className="mb-8 flex justify-between">
@@ -14,6 +15,11 @@ export function PostHeader({ post }: { post: Post | Project }) {
           </span>
         )}
         <time className="text-neutral-500">{post.date}</time>
+        {readingTime && (
+          <span className="text-2xs font-mono text-neutral-400 uppercase">
+            {readingTime} min
+          </span>
+        )}
       </div>
     </header>
   );

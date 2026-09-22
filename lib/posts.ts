@@ -1,4 +1,5 @@
 import type { Post } from "@/types";
+import { estimateReadingTime } from "@/lib/readingTime";
 
 /**
  * Drafts are visible while you're working (`npm run dev`) and on Vercel preview
@@ -42,11 +43,22 @@ const posts: Post[] = [
 ];
 
 /**
+ * Newest first, with `pinned` posts floated above the rest. Sorting here rather
+ * than relying on the order of the array above means the list, the sitemap and
+ * the feeds cannot drift apart, and a new entry can go anywhere in the array.
+ */
+function byPinnedThenNewest(a: Post, b: Post): number {
+  if (!!a.pinned !== !!b.pinned) return a.pinned ? -1 : 1;
+  return new Date(b.date).getTime() - new Date(a.date).getTime();
+}
+
+/**
  * The public list — what feeds `/thoughts`, `app/sitemap.ts` and the three feed
  * routes. Drafts drop out of all four at once in production.
  */
 export function getAllPosts(): Post[] {
-  return showDrafts ? posts : posts.filter((post) => !post.draft);
+  const visible = showDrafts ? posts : posts.filter((post) => !post.draft);
+  return [...visible].sort(byPinnedThenNewest);
 }
 
 /**
@@ -59,5 +71,10 @@ export function getPostBySlug(slug: string): Post {
   if (!post) {
     throw new Error(`Post with slug ${slug} not found`);
   }
-  return post;
+  // Copied, not mutated: the array above is shared with `getAllPosts`, and
+  // reading time is only wanted on the article page itself.
+  return {
+    ...post,
+    readingTime: post.readingTime ?? estimateReadingTime(slug),
+  };
 }

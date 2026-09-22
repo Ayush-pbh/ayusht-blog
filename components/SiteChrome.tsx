@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { unstable_ViewTransition as ViewTransition } from "react";
 import Nav from "@/components/Nav";
+import PostFooter from "@/components/PostFooter";
 
 /**
  * Wraps children in the site's nav-and-measure layout, except on standalone
@@ -16,6 +17,11 @@ import Nav from "@/components/Nav";
  * untouched.
  */
 const STANDALONE_PREFIXES = ["/waitlist"];
+
+/** `/thoughts/<slug>`, but not the `/thoughts` index itself. */
+function isArticle(pathname: string) {
+  return pathname.startsWith("/thoughts/");
+}
 
 export default function SiteChrome({
   children,
@@ -34,7 +40,10 @@ export default function SiteChrome({
       <main className="xs:pl-6 relative w-full min-w-0 text-justify hyphens-auto sm:max-w-2xl sm:pl-8 md:pl-12">
         <div className="xs:block absolute top-0 left-0 hidden h-full border-l border-neutral-200" />
         <ViewTransition name="crossfade">
-          <article className="relative">{children}</article>
+          <article className="relative">
+            {children}
+            {isArticle(pathname) && <PostFooter />}
+          </article>
         </ViewTransition>
       </main>
     </div>

@@ -52,7 +52,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@ayushthought",
+    title: feedConfig.siteTitle,
+    description: feedConfig.siteDescription,
+    site: feedConfig.xHandle,
+    creator: feedConfig.xHandle,
   },
   appleWebApp: {
     title: feedConfig.siteTitle,

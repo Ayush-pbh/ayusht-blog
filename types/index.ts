@@ -7,6 +7,19 @@ export type Post = {
   date: string;
   coverImage?: string;
   /**
+   * Floats the post to the top of `/thoughts`, above the reverse-chronological
+   * list. For the piece that should be the first thing a visitor sees, whatever
+   * its date. More than one pinned post keeps them in date order among
+   * themselves.
+   */
+  pinned?: boolean;
+  /**
+   * Minutes, estimated from the page source at build time — see
+   * `lib/readingTime.ts`. Attached by `getPostBySlug`, so it is present on an
+   * article page and absent in the list and the feeds.
+   */
+  readingTime?: number;
+  /**
    * Keeps the post out of the index, sitemap and feeds in production, and out
    * of search engines. The page itself still builds and answers on its URL —
    * see `getAllPosts` in `lib/posts.ts`.
