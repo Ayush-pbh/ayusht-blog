@@ -56,14 +56,16 @@ export default function Nav() {
   return (
     <nav className="xs:mb-0 xs:w-44 xs:shrink-0 xs:pr-6 xs:border-none xs:pb-0 relative mb-8 border-b border-neutral-200 pb-5 md:w-56 md:pr-8">
       <div className="xs:sticky xs:top-16 md:top-24">
-        <Link
-          href="/"
-          className="text-label xs:justify-end flex items-baseline font-mono tracking-[0.16em] text-neutral-900 uppercase"
-        >
-          {feedConfig.siteTitle}
-        </Link>
+        <div className="xs:border-b xs:border-neutral-200 xs:pb-4">
+          <Link
+            href="/"
+            className="text-label xs:justify-end flex items-baseline font-mono tracking-[0.18em] text-neutral-900 uppercase"
+          >
+            {feedConfig.siteTitle}
+          </Link>
+        </div>
 
-        <menu className="xs:mt-8 xs:flex-col xs:justify-start xs:gap-1.5 xs:text-right mt-5 flex flex-wrap gap-x-5 gap-y-1 text-base leading-5">
+        <menu className="xs:mt-6 xs:flex-col xs:justify-start xs:gap-1.5 xs:text-right mt-5 flex flex-wrap gap-x-5 gap-y-1 text-base leading-5">
           {links.map((link) => (
             <li key={link.href}>
               <Link
