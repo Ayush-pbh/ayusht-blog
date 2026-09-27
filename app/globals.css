@@ -212,7 +212,14 @@
 
   strong,
   b {
-    @apply font-medium text-neutral-900;
+    @apply font-semibold text-neutral-900;
+  }
+
+  /* An anchored heading should not land flush against the top of the window. */
+  h1,
+  h2,
+  h3 {
+    scroll-margin-top: 2.5rem;
   }
 
   /*
@@ -222,11 +229,17 @@
    */
   .prose p {
     @apply text-body font-serif text-neutral-800;
+    /* Keeps a single word from being left alone on the last line. */
+    text-wrap: pretty;
   }
 
-  .prose .text-lede,
-  .prose p.lede {
-    @apply text-lede;
+  /*
+   * The standfirst. A post wraps its body in one element, so the first
+   * paragraph of that block is set a size up and a shade darker, the way a
+   * magazine sets the paragraph that has to carry the reader into the piece.
+   */
+  .prose > div:first-of-type > p:first-child {
+    @apply text-lede text-neutral-900;
   }
 
   .prose ul,
@@ -407,8 +420,12 @@
 }
 
 @layer utilities {
+  /*
+   * A short rule rather than a full one: it marks a break without drawing a
+   * line across the measure.
+   */
   hr {
-    @apply my-10 border-neutral-200;
+    @apply my-12 w-16 border-neutral-300;
   }
 }
 

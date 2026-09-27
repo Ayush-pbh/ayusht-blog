@@ -36,7 +36,9 @@ Because `getAllPosts()` is the single source of truth, adding an entry automatic
 
 `getPostBySlug` also attaches `readingTime`, estimated by `lib/readingTime.ts`, which reads the post's own `page.tsx` at build time and counts the prose left after the code is stripped out. `PostHeader` renders it next to the date. Set `readingTime` explicitly on the post to override the estimate; it is deliberately absent from `getAllPosts()`, so the index and the feeds never trigger a file read.
 
-Articles do not render their own footer — `SiteChrome` appends `components/PostFooter.tsx` on any `/thoughts/<slug>` route, so the X link and the back-links appear on a new post with no extra edit.
+Articles do not render their own footer — `SiteChrome` appends `components/PostFooter.tsx` on any `/thoughts/<slug>` route, so the X link and the back-links appear on a new post with no extra edit. Every other route gets `components/SiteFooter.tsx` instead.
+
+`/thoughts` and `/projects` share `components/IndexList.tsx`: one ruled row per entry, with the entry's `description` under the title.
 
 `draft: true` on a post keeps it out of all four in production and marks it `noindex`, while the page still builds and answers on its URL. `getAllPosts()` filters drafts; `getPostBySlug()` deliberately does not, so the draft's own page still resolves. Drafts stay visible in `npm run dev` and on Vercel preview deployments.
 
@@ -52,7 +54,15 @@ Post URLs are `/thoughts/<slug>` — hardcoded in `feedConfig.ts`, `metadata.ts`
 
 ### Styling
 
-Tailwind v4 with no `tailwind.config` — the design system is CSS in `app/globals.css`: an `@theme` block overrides the `neutral` and `blue` palettes with warm off-white tones, defines the three font vars (Inter sans / Lora serif / JetBrains Mono), and adds an `xs` (32rem) breakpoint and `text-2xs`. The `@layer base` block also styles `rehype-pretty-code` output and KaTeX by attribute selector, so code-block and math appearance is controlled there rather than in the components.
+Tailwind v4 with no `tailwind.config` — the design system is CSS in `app/globals.css`: an `@theme` block overrides the `neutral` and `blue` palettes with warm off-white tones, defines the three font vars (Inter Tight sans / Newsreader serif / JetBrains Mono), adds an `xs` (32rem) breakpoint, and declares the type scale: `text-2xs`, `text-label` (mono micro-caps, for dates, counts and badges), `text-body` (17px prose), `text-lede`, `text-title`, `text-display`. The `@layer base` block also styles `rehype-pretty-code` output and KaTeX by attribute selector, so code-block and math appearance is controlled there rather than in the components.
+
+The next/font variables are set on `<html>`, not `<body>`: the `--font-sans` / `--font-serif` / `--font-mono` tokens are declared at `:root`, and a custom property that only exists on `<body>` is invalid by the time `:root` substitutes it.
+
+`cn()` in `lib/utils.ts` extends tailwind-merge with those size names. Without that, tailwind-merge files an unknown `text-title` under text-colour and a later `text-neutral-900` in the same call silently deletes the size.
+
+There is one accent, `--color-accent`, declared alongside the ramp in all three blocks (`@theme`, the media query, `[data-theme="dark"]`). It marks the current page in the nav, the `§` anchors, footnote references, the pull-quote rule, the chart line and the highlighted line in a code block. Nothing else is coloured.
+
+`SiteChrome` puts `class="prose"` on the article, and the `.prose` rules in `@layer base` carry the reading sizes — including a standfirst rule (`.prose > div:first-of-type > p:first-child`) that sets a post's opening paragraph one size up. That is why post pages are plain `<p>` and still set correctly. Being in `@layer base`, every one of these rules still loses to a utility passed on the component.
 
 Note `em`/`i`/`q` are globally restyled to serif italic — the nav deliberately uses `<em>` for its links.
 
