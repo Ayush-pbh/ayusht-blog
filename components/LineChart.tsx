@@ -34,7 +34,7 @@ export default function LineChart({
             <Line
               type="monotone"
               dataKey={name || "value"}
-              stroke="var(--color-blue-500)"
+              stroke="var(--color-accent)"
               activeDot={{ r: 6 }}
             />
           </RechartsLineChart>

@@ -24,7 +24,7 @@ export default function Video({
   ...props
 }: VideoProps) {
   return (
-    <figure className={cn("my-8", className)}>
+    <figure className={cn("my-10", className)}>
       <div className="border border-neutral-200 bg-neutral-100">
         <video
           className="w-full"
@@ -40,7 +40,7 @@ export default function Video({
         </video>
       </div>
       {caption && (
-        <figcaption className="mt-2 text-xs text-neutral-500">
+        <figcaption className="mt-3 max-w-[58ch] font-sans text-xs leading-relaxed text-neutral-500">
           {caption}
         </figcaption>
       )}

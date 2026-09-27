@@ -1,27 +1,60 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
-  --font-serif: "Lora", "Lora Fallback", Georgia, serif;
-  --font-mono:
-    "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, monospace;
+  /*
+   * Newsreader sets the prose: a screen-first text serif with real italics and
+   * a tall x-height, which is what lets body copy sit at 17px without feeling
+   * loud. Inter Tight carries the chrome (nav, labels, badges) and JetBrains
+   * Mono carries anything that is data rather than language — dates, reading
+   * times, code.
+   */
+  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
   --breakpoint-xs: 32rem;
 
   --text-2xs: 0.625rem;
   --text-2xs--line-height: calc(0.75 / 0.625);
 
+  /* Mono micro-caps: dates, reading times, badges, section labels. */
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.12em;
+
+  /* The reading sizes. `body` is the prose default, `lede` opens a page. */
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.72;
+  --text-lede: 1.1875rem;
+  --text-lede--line-height: 1.62;
+
+  /* Display sizes. Tracking tightens as the size grows, as metal type did. */
+  --text-title: 1.875rem;
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.02em;
+  --text-display: 2.75rem;
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.028em;
+
   --color-neutral-50: #faf9f5;
-  --color-neutral-100: #f5f2ec;
-  --color-neutral-200: #e8e6dc;
-  --color-neutral-300: #d4d2c9;
-  --color-neutral-400: #adaba2;
-  --color-neutral-500: #87867f;
-  --color-neutral-600: #73726d;
-  --color-neutral-700: #5e5d59;
-  --color-neutral-800: #3e3d3b;
-  --color-neutral-900: #1f1e1d;
-  --color-neutral-950: #0f0f0e;
+  --color-neutral-100: #f4f1ea;
+  --color-neutral-200: #e6e3d8;
+  --color-neutral-300: #d2cfc4;
+  --color-neutral-400: #a8a69c;
+  --color-neutral-500: #827f77;
+  --color-neutral-600: #6d6b65;
+  --color-neutral-700: #575550;
+  --color-neutral-800: #3a3937;
+  --color-neutral-900: #1a1917;
+  --color-neutral-950: #0d0d0c;
+
+  /*
+   * One accent for the whole site: a printer's second colour. It marks the
+   * current page, the section anchors, footnote references and the live line
+   * in a code block. Nothing else gets to be coloured.
+   */
+  --color-accent: #9c3517;
+  --color-accent-strong: #7f2a11;
 
   --color-blue-50: #f5f7fa;
   --color-blue-100: #ebf1f7;
@@ -49,22 +82,28 @@
  * these unlayered declarations outrank Tailwind's @layer theme, so no
  * component needs a dark: variant. Keep the ramp semantic and this holds.
  *
+ * The accent is warmed and lightened rather than inverted: the same ink, read
+ * off a dark sheet.
+ *
  * The two dark blocks are deliberate duplicates: CSS can't share one
  * declaration list between a media query and a selector. Edit them together.
  */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-neutral-50: #13120f;
-    --color-neutral-100: #1c1a17;
-    --color-neutral-200: #2d2a26;
-    --color-neutral-300: #3f3b36;
+    --color-neutral-50: #12110f;
+    --color-neutral-100: #1b1917;
+    --color-neutral-200: #2b2825;
+    --color-neutral-300: #3d3a35;
     --color-neutral-400: #6a665f;
-    --color-neutral-500: #928d85;
-    --color-neutral-600: #aaa49b;
-    --color-neutral-700: #c3bdb3;
-    --color-neutral-800: #dcd7cd;
-    --color-neutral-900: #f5f2ec;
-    --color-neutral-950: #faf9f5;
+    --color-neutral-500: #948f87;
+    --color-neutral-600: #aca69d;
+    --color-neutral-700: #c5bfb5;
+    --color-neutral-800: #ded9cf;
+    --color-neutral-900: #f6f3ed;
+    --color-neutral-950: #fbfaf6;
+
+    --color-accent: #e08a63;
+    --color-accent-strong: #eda483;
   }
 
   /*
@@ -78,17 +117,20 @@
 }
 
 :root[data-theme="dark"] {
-  --color-neutral-50: #13120f;
-  --color-neutral-100: #1c1a17;
-  --color-neutral-200: #2d2a26;
-  --color-neutral-300: #3f3b36;
+  --color-neutral-50: #12110f;
+  --color-neutral-100: #1b1917;
+  --color-neutral-200: #2b2825;
+  --color-neutral-300: #3d3a35;
   --color-neutral-400: #6a665f;
-  --color-neutral-500: #928d85;
-  --color-neutral-600: #aaa49b;
-  --color-neutral-700: #c3bdb3;
-  --color-neutral-800: #dcd7cd;
-  --color-neutral-900: #f5f2ec;
-  --color-neutral-950: #faf9f5;
+  --color-neutral-500: #948f87;
+  --color-neutral-600: #aca69d;
+  --color-neutral-700: #c5bfb5;
+  --color-neutral-800: #ded9cf;
+  --color-neutral-900: #f6f3ed;
+  --color-neutral-950: #fbfaf6;
+
+  --color-accent: #e08a63;
+  --color-accent-strong: #eda483;
 }
 
 :root[data-theme="dark"] [data-rehype-pretty-code-figure] span,
@@ -142,31 +184,92 @@
 
   body {
     background-color: var(--color-neutral-50);
+    /* Real ligatures and contextual alternates in the text face. */
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1,
+      "kern" 1;
+    text-rendering: optimizeLegibility;
   }
+
   *::selection {
-    background-color: color-mix(
-      in srgb,
-      var(--color-neutral-500) 10%,
-      transparent
-    );
+    background-color: color-mix(in srgb, var(--color-accent) 18%, transparent);
     color: var(--color-neutral-900);
+  }
+
+  /* One focus treatment everywhere, in the accent, never removed. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 1px;
   }
 
   em,
   q,
   i {
-    @apply font-serif text-base leading-none italic;
+    @apply font-serif italic;
   }
 
   strong,
   b {
-    @apply font-semibold;
+    @apply font-medium text-neutral-900;
+  }
+
+  /*
+   * Prose. Post pages are plain <p>/<ul>/<ol> inside `article.prose`, so the
+   * reading sizes live here rather than in every page. Utilities still win —
+   * these are @layer base — so a component can override any of it.
+   */
+  .prose p {
+    @apply text-body font-serif text-neutral-800;
+  }
+
+  .prose .text-lede,
+  .prose p.lede {
+    @apply text-lede;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply text-body font-serif text-neutral-800;
+  }
+
+  /* Hanging punctuation on the pull quote, the way a book sets it. */
+  .prose blockquote {
+    hanging-punctuation: first;
+  }
+
+  /*
+   * A quote is a different voice, so it is set a size up and a shade darker
+   * than the prose around it. This has to out-specify `.prose p` above.
+   */
+  .prose blockquote p {
+    @apply text-lede text-neutral-900;
+  }
+
+  /* Links inside prose: a hairline underline that thickens on hover. */
+  .prose a {
+    text-underline-offset: 0.16em;
+    text-decoration-thickness: 0.055em;
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--color-neutral-400) 70%,
+      transparent
+    );
+    transition:
+      color 0.18s ease,
+      text-decoration-color 0.18s ease;
+  }
+
+  .prose a:hover {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
   }
 
   figure[data-rehype-pretty-code-figure] pre {
     scrollbar-width: thin;
     scrollbar-color: var(--color-neutral-200) var(--color-neutral-100);
-    @apply overflow-x-auto border border-neutral-200 bg-neutral-100 py-2;
+    @apply overflow-x-auto border border-neutral-200 bg-neutral-100 py-3 text-xs leading-relaxed;
   }
 
   figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar {
@@ -214,7 +317,8 @@
   }
 
   figure[data-rehype-pretty-code-figure] [data-highlighted-line] {
-    @apply border-l border-blue-400 bg-blue-500/10;
+    border-left-color: var(--color-accent);
+    background-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
   }
 
   figure[data-rehype-pretty-code-figure]
@@ -224,16 +328,16 @@
   }
 
   figure[data-rehype-pretty-code-figure] [data-highlighted-chars] {
-    @apply rounded bg-blue-500/10;
-    box-shadow: 0 0 0 2px rgb(21 93 252 / 0.1);
+    background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    @apply rounded-xs;
   }
 
   [data-rehype-pretty-code-title] {
-    @apply border-x border-t border-neutral-200 p-2 font-medium;
+    @apply text-label border-x border-t border-neutral-200 bg-neutral-100 px-3 py-2 font-mono text-neutral-500 uppercase;
   }
 
   [data-rehype-pretty-code-caption] {
-    @apply mt-2 text-neutral-500;
+    @apply mt-2 text-xs text-neutral-500;
   }
 
   [data-rmiz-content="found"] img,
@@ -293,13 +397,42 @@
 
 @layer components {
   .btn {
-    @apply cursor-pointer rounded border border-neutral-400 px-2 py-1 text-xs transition-colors hover:border-neutral-900 hover:text-neutral-900;
+    @apply text-label cursor-pointer border border-neutral-300 px-3 py-1.5 font-mono uppercase transition-colors hover:border-neutral-900 hover:text-neutral-900;
+  }
+
+  /* The mono micro-caps used for dates, counts, badges and section labels. */
+  .label {
+    @apply text-label font-mono text-neutral-400 uppercase;
   }
 }
 
 @layer utilities {
   hr {
-    @apply my-8 border-neutral-200;
+    @apply my-10 border-neutral-200;
+  }
+}
+
+/*
+ * Entry motion. One gesture, reused: content lifts a few pixels into place on
+ * load, and list rows follow it in sequence so the eye reads top to bottom.
+ * Everything is transform + opacity, and the whole thing collapses to nothing
+ * under prefers-reduced-motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--rise-index, 0) * 55ms);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 

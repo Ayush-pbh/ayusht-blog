@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Lora, Inter, JetBrains_Mono } from "next/font/google";
+import { Newsreader, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { feedConfig } from "@/lib/feedConfig";
 import SiteChrome from "@/components/SiteChrome";
 import "./globals.css";
 
-const inter = Inter({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-inter-tight",
   style: ["normal", "italic"],
 });
 const jetbrainsMono = JetBrains_Mono({
@@ -15,9 +15,11 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   style: ["normal", "italic"],
 });
-const lora = Lora({
+// The text face. Newsreader ships an optical-size axis; the prose sits at the
+// small end of it, which is where its ink traps and tall x-height are tuned.
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-lora",
+  variable: "--font-newsreader",
   style: ["normal", "italic"],
 });
 
@@ -25,7 +27,7 @@ const lora = Lora({
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#faf9f5" },
-    { media: "(prefers-color-scheme: dark)", color: "#13120f" },
+    { media: "(prefers-color-scheme: dark)", color: "#12110f" },
   ],
 };
 
@@ -101,7 +103,16 @@ export default function RootLayout({
     // the server can't know the stored choice, so <html> legitimately differs
     // from the SSR output. It only silences this element's own attributes,
     // not anything nested inside it.
-    <html lang="en" suppressHydrationWarning>
+    // The font variables are set here rather than on <body> because the
+    // `--font-sans` / `--font-serif` tokens in globals.css are declared on
+    // :root and point at them. Custom properties substitute per element, so a
+    // variable that only exists on <body> is invalid by the time :root
+    // resolves the token.
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${interTight.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         {/*
           Applies a stored theme choice before first paint, so an explicit
@@ -132,9 +143,7 @@ export default function RootLayout({
           href={feedConfig.feedPaths.json}
         />
       </head>
-      <body
-        className={`text-sm text-neutral-800 antialiased ${inter.variable} ${lora.variable} ${jetbrainsMono.variable}`}
-      >
+      <body className="text-[0.9375rem] text-neutral-700 antialiased">
         <SiteChrome>{children}</SiteChrome>
         <Analytics />
       </body>

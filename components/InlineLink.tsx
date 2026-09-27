@@ -15,7 +15,7 @@ export default function InlineLink({
   return (
     <Link
       className={cn(
-        "underline transition-colors hover:text-neutral-900",
+        "hover:text-accent hover:decoration-accent underline decoration-neutral-300 underline-offset-[0.16em] transition-colors",
         className,
       )}
       {...props}

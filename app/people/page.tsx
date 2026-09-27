@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { H1 } from "@/components/Headings";
 import { Ul, Li } from "@/components/List";
 import InlineLink from "@/components/InlineLink";
 
@@ -10,9 +9,13 @@ export const metadata: Metadata = {
 
 export default function People() {
   return (
-    <div className="space-y-4">
-      <H1>People</H1>
-      <p>Their ideas have been faithful companions.</p>
+    <div>
+      <header className="rise mb-10">
+        <h1 className="text-title font-serif text-neutral-900">People</h1>
+        <p className="text-lede mt-4 max-w-[46ch] font-serif text-neutral-500">
+          Their ideas have been faithful companions.
+        </p>
+      </header>
       <Ul>
         <Li>
           <InlineLink href="https://en.wikipedia.org/wiki/Albert_Einstein">

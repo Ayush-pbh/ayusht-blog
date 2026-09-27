@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { H1 } from "@/components/Headings";
 import { Ul, Li } from "@/components/List";
 import InlineLink from "@/components/InlineLink";
 
@@ -11,7 +10,9 @@ export const metadata: Metadata = {
 export default function Principles() {
   return (
     <div className="space-y-4">
-      <H1>Principles</H1>
+      <h1 className="text-title mb-8 font-serif text-neutral-900">
+        Principles
+      </h1>
       <p>
         {/* Inspired by{" "}
         <InlineLink href="https://www.principles.com/">Ray Dalio</InlineLink>,{" "}

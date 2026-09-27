@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { H1 } from "@/components/Headings";
 import CollectionTabs from "@/components/CollectionTabs";
 import { getAllCollections } from "@/lib/collections";
 
@@ -13,9 +12,13 @@ export default function Collections() {
   const collections = getAllCollections();
 
   return (
-    <div className="space-y-4">
-      <H1>Collections</H1>
-      <p>Things worth returning to.</p>
+    <div>
+      <header className="rise mb-10">
+        <h1 className="text-title font-serif text-neutral-900">Collections</h1>
+        <p className="text-lede mt-4 max-w-[46ch] font-serif text-neutral-500">
+          Things worth returning to.
+        </p>
+      </header>
       <CollectionTabs collections={collections} />
     </div>
   );

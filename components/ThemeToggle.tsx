@@ -54,7 +54,7 @@ export default function ThemeToggle() {
     document
       .querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
       .forEach((meta) => {
-        meta.content = resolved === "dark" ? "#13120f" : "#faf9f5";
+        meta.content = resolved === "dark" ? "#12110f" : "#faf9f5";
       });
   }, [theme]);
 

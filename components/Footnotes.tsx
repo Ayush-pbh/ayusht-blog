@@ -59,13 +59,13 @@ export function FootnoteLink({ id }: { id: number }) {
         <a
           id={`s${id}`}
           href={`#f${id}`}
-          className="tabular-nums transition-colors hover:text-neutral-900"
+          className="hover:text-accent font-mono text-[0.7em] text-neutral-400 tabular-nums transition-colors"
         >
           [{id}]
         </a>
       </sup>
-      <span className="absolute left-full ml-12 hidden w-64 -translate-y-5 text-left text-xs text-neutral-500 xl:block">
-        <span className="absolute top-0 -translate-x-full pr-1 tabular-nums select-none">
+      <span className="absolute left-full ml-14 hidden w-60 -translate-y-5 text-left font-sans text-xs leading-relaxed text-neutral-500 xl:block">
+        <span className="absolute top-0 -translate-x-full pr-2 font-mono text-[0.7rem] text-neutral-400 tabular-nums select-none">
           {footnote.id}.
         </span>{" "}
         <span>{footnote.content}</span>
@@ -96,7 +96,7 @@ export function Footnotes() {
   return (
     <>
       <hr />
-      <Ol className="space-y-2 text-xs text-neutral-500">
+      <Ol className="space-y-3 font-sans text-xs leading-relaxed text-neutral-500">
         {footnotes
           .sort((a, b) => a.id - b.id)
           .map((footnote) => (
@@ -106,12 +106,12 @@ export function Footnotes() {
               data-footnote-id={`${footnote.id}. `}
               data-active={activeFootnote === `#f${footnote.id}`}
               className={
-                "marker:content-[attr(data-footnote-id)] data-[active=true]:bg-neutral-500/10 data-[active=true]:text-neutral-900"
+                "pl-1 marker:font-mono marker:text-[0.7rem] marker:text-neutral-400 marker:content-[attr(data-footnote-id)] data-[active=true]:text-neutral-900"
               }
             >
               <a
                 href={`#s${footnote.id}`}
-                className="mr-1 transition-colors hover:text-neutral-900"
+                className="hover:text-accent mr-1.5 font-mono text-neutral-300 transition-colors"
               >
                 ^
               </a>

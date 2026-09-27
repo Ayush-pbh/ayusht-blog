@@ -27,7 +27,7 @@ function Tile({
     >
       <div
         className={cn(
-          "relative overflow-hidden border border-neutral-200 bg-neutral-100 transition-colors group-hover:border-neutral-900",
+          "relative overflow-hidden border border-neutral-200 bg-neutral-100 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-neutral-400",
           portrait ? "aspect-2/3" : "aspect-video",
         )}
       >
@@ -50,13 +50,15 @@ function Tile({
       </div>
 
       <div className="space-y-0.5">
-        <h3 className="text-xs leading-snug text-neutral-800 transition-colors group-hover:text-neutral-900">
+        <h3 className="group-hover:text-accent font-serif text-[0.9375rem] leading-snug text-neutral-800 transition-colors">
           {item.title}
         </h3>
         {item.author && (
-          <p className="text-2xs text-neutral-500">{item.author}</p>
+          <p className="text-2xs font-sans text-neutral-500">{item.author}</p>
         )}
-        {item.note && <p className="text-2xs text-neutral-400">{item.note}</p>}
+        {item.note && (
+          <p className="text-2xs font-sans text-neutral-400">{item.note}</p>
+        )}
       </div>
     </a>
   );
@@ -82,7 +84,7 @@ function GalleryTile({
       onClick={onOpen}
       className="group mb-4 block w-full cursor-zoom-in break-inside-avoid space-y-2 text-left"
     >
-      <div className="overflow-hidden border border-neutral-200 bg-neutral-100 transition-colors group-hover:border-neutral-900">
+      <div className="overflow-hidden border border-neutral-200 bg-neutral-100 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-neutral-400">
         {typeof src === "string" ? (
           <div className="relative aspect-square">
             <Image
@@ -104,11 +106,11 @@ function GalleryTile({
       </div>
 
       <div className="space-y-0.5">
-        <h3 className="text-xs leading-snug text-neutral-800 transition-colors group-hover:text-neutral-900">
+        <h3 className="group-hover:text-accent font-serif text-[0.9375rem] leading-snug text-neutral-800 transition-colors">
           {item.title}
         </h3>
         {item.author && (
-          <p className="text-2xs text-neutral-500">{item.author}</p>
+          <p className="text-2xs font-sans text-neutral-500">{item.author}</p>
         )}
       </div>
     </button>
@@ -152,7 +154,7 @@ export default function CollectionTabs({
         role="tablist"
         aria-label="Collections"
         onKeyDown={onKeyDown}
-        className="flex flex-wrap gap-4 border-b border-neutral-200 pb-2"
+        className="flex flex-wrap gap-x-6 gap-y-2 border-b border-neutral-200 pb-3"
       >
         {collections.map((collection, index) => (
           <button
@@ -167,12 +169,18 @@ export default function CollectionTabs({
             tabIndex={index === active ? 0 : -1}
             onClick={() => setActive(index)}
             data-active={index === active}
-            className="cursor-pointer text-neutral-400 transition-colors hover:text-neutral-900 data-[active=true]:text-neutral-900"
+            className="group data-[active=true]:text-accent relative cursor-pointer pb-3 text-base text-neutral-400 transition-colors hover:text-neutral-900"
           >
             <em>{collection.title.toLowerCase()}</em>
-            <span className="text-2xs ml-1 align-super tabular-nums">
+            <span className="text-2xs ml-1 align-super font-mono tabular-nums">
               {collection.items.length}
             </span>
+            {/* Sits on the rule under the tab strip, so the open tab is joined
+                to the panel below it. */}
+            <span
+              aria-hidden="true"
+              className="bg-accent absolute -bottom-px left-0 h-px w-full scale-x-0 transition-transform duration-300 group-data-[active=true]:scale-x-100"
+            />
           </button>
         ))}
       </div>

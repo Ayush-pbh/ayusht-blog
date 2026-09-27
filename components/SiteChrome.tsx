@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { unstable_ViewTransition as ViewTransition } from "react";
 import Nav from "@/components/Nav";
 import PostFooter from "@/components/PostFooter";
+import SiteFooter from "@/components/SiteFooter";
 
 /**
  * Wraps children in the site's nav-and-measure layout, except on standalone
@@ -18,11 +19,6 @@ import PostFooter from "@/components/PostFooter";
  */
 const STANDALONE_PREFIXES = ["/waitlist"];
 
-/** `/thoughts/<slug>`, but not the `/thoughts` index itself. */
-function isArticle(pathname: string) {
-  return pathname.startsWith("/thoughts/");
-}
-
 export default function SiteChrome({
   children,
 }: {
@@ -34,18 +30,29 @@ export default function SiteChrome({
     return <>{children}</>;
   }
 
+  /** `/thoughts/<slug>`, but not the `/thoughts` index itself. */
+  const article = pathname.startsWith("/thoughts/");
+
   return (
-    <div className="xs:flex-row xs:p-6 flex flex-col p-4 pb-12 sm:p-12 md:p-24 md:pb-24">
-      <Nav />
-      <main className="xs:pl-6 relative w-full min-w-0 text-justify hyphens-auto sm:max-w-2xl sm:pl-8 md:pl-12">
-        <div className="xs:block absolute top-0 left-0 hidden h-full border-l border-neutral-200" />
-        <ViewTransition name="crossfade">
-          <article className="relative">
-            {children}
-            {isArticle(pathname) && <PostFooter />}
-          </article>
-        </ViewTransition>
-      </main>
+    /*
+     * The page is one spread: masthead in the left column, a single measure of
+     * text in the right, and a rule between them that runs the height of the
+     * page. The pair is capped and centred so the margin the sidenotes live in
+     * survives on a wide screen instead of running off to the right edge.
+     */
+    <div className="xs:px-8 xs:py-16 mx-auto flex min-h-[100dvh] w-full max-w-[78rem] flex-col px-5 py-8 md:py-24">
+      <div className="xs:flex-row flex flex-1 flex-col">
+        <Nav />
+        <main className="xs:border-l xs:border-neutral-200 xs:pl-8 relative w-full min-w-0 sm:max-w-[38rem] md:pl-14">
+          <ViewTransition name="crossfade">
+            <article className="prose relative">
+              {children}
+              {article && <PostFooter />}
+            </article>
+          </ViewTransition>
+          {!article && <SiteFooter />}
+        </main>
+      </div>
     </div>
   );
 }
