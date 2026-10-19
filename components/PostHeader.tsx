@@ -64,7 +64,7 @@ export function PostHeader({ post }: { post: Post | Project }) {
             encoded for the web before they are committed.
           */
             unoptimized
-            className="w-full border border-neutral-200"
+            className="ink-settle w-full border border-neutral-200"
           />
         </figure>
       )}

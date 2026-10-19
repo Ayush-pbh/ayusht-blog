@@ -161,6 +161,22 @@
     text-decoration-color 1s ease !important;
 }
 
+/*
+ * The toggle's moon turns half a revolution per click. The rule above would
+ * otherwise replace its transform transition for exactly the second it needs
+ * it, so the icon restates it — and does so only when motion is welcome, so
+ * the reduce block below still wins for people who asked for stillness.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-transition .theme-icon {
+    transition:
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      fill 1s ease,
+      stroke 1s ease,
+      color 1s ease !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .theme-transition,
   .theme-transition *,
@@ -271,12 +287,14 @@
     );
     transition:
       color 0.18s ease,
-      text-decoration-color 0.18s ease;
+      text-decoration-color 0.18s ease,
+      text-underline-offset 0.24s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .prose a:hover {
     color: var(--color-accent);
     text-decoration-color: var(--color-accent);
+    text-underline-offset: 0.26em;
   }
 
   figure[data-rehype-pretty-code-figure] pre {
@@ -439,6 +457,62 @@
   .rise {
     animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: calc(var(--rise-index, 0) * 55ms);
+  }
+}
+
+/*
+ * Images arrive the way ink does on a riso: a touch light and soft, then
+ * settling into the paper. Once, on load, after the element's own rise.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .ink-settle {
+    animation: ink-settle 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  }
+}
+
+@keyframes ink-settle {
+  from {
+    opacity: 0;
+    filter: blur(3px) brightness(1.08) saturate(0.7);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/*
+ * A hairline of accent ink across the top of an essay, filled by how far you
+ * have read. Driven by the scroll position itself, so it costs no JavaScript
+ * and never animates on its own; browsers without scroll timelines simply
+ * don't draw it.
+ */
+.read-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .read-progress {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      display: block;
+      height: 1px;
+      background: var(--color-accent);
+      transform-origin: 0 50%;
+      animation: read-progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes read-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 

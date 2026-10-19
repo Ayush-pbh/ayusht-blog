@@ -33,7 +33,7 @@ export default function IndexList({
           className="rise group block border-t border-neutral-200 px-3 py-5 transition-colors last:border-b hover:bg-neutral-100/60"
         >
           <div className="flex items-baseline justify-between gap-6">
-            <h2 className="group-hover:text-accent font-serif text-lg leading-snug text-neutral-900 transition-colors">
+            <h2 className="group-hover:text-accent font-serif text-lg leading-snug text-neutral-900 transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:translate-x-[3px]">
               {entry.title}
               {entry.badges?.map((badge) => (
                 <span
@@ -44,7 +44,7 @@ export default function IndexList({
                 </span>
               ))}
             </h2>
-            <time className="text-label shrink-0 font-mono text-neutral-400 uppercase tabular-nums">
+            <time className="text-label group-hover:text-accent shrink-0 font-mono text-neutral-400 uppercase tabular-nums transition-colors duration-300">
               {entry.date}
             </time>
           </div>

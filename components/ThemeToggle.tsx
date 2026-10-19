@@ -25,6 +25,9 @@ function next(theme: Theme): Theme {
  */
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("system");
+  // Half-turns, counted up rather than toggled, so the moon always keeps
+  // turning the same way instead of swinging back.
+  const [turns, setTurns] = useState(0);
   const timeout = useRef<number | null>(null);
 
   useEffect(() => {
@@ -62,6 +65,7 @@ export default function ThemeToggle() {
     const chosen = next(theme);
     const root = document.documentElement;
     setTheme(chosen);
+    setTurns((t) => t + 1);
 
     root.classList.add("theme-transition");
     // Transitions are resolved against the style *before* the change, so the
@@ -95,7 +99,7 @@ export default function ThemeToggle() {
       title={label}
       className="cursor-pointer text-neutral-400 transition-colors hover:text-neutral-900"
     >
-      <ThemeIcon theme={theme} />
+      <ThemeIcon theme={theme} turns={turns} />
     </button>
   );
 }
@@ -105,12 +109,13 @@ export default function ThemeToggle() {
  * rather than in `icons/` because the shape is state, not a static asset.
  * Everything is `currentColor`, so the button's hover carries the icon with it.
  */
-function ThemeIcon({ theme }: { theme: Theme }) {
+function ThemeIcon({ theme, turns }: { theme: Theme; turns: number }) {
   return (
     <svg
       viewBox="0 0 16 16"
       aria-hidden="true"
-      className="inline-block h-3.5 w-3.5 align-middle"
+      className="theme-icon inline-block h-3.5 w-3.5 align-middle motion-safe:transition-transform motion-safe:duration-[600ms] motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]"
+      style={{ transform: `rotate(${turns * 180}deg)` }}
     >
       <circle
         cx="8"

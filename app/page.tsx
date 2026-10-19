@@ -47,7 +47,7 @@ export default function Home() {
             left for the optimiser to win.
           */
           unoptimized
-          className="w-full border border-neutral-200"
+          className="ink-settle w-full border border-neutral-200"
           priority
         />
       </figure>

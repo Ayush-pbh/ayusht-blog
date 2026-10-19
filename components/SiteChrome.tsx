@@ -44,6 +44,7 @@ export default function SiteChrome({
       <div className="xs:flex-row flex flex-1 flex-col">
         <Nav />
         <main className="xs:border-l xs:border-neutral-200 xs:pl-8 relative w-full min-w-0 sm:max-w-[38rem] md:pl-14">
+          {article && <div className="read-progress" aria-hidden="true" />}
           <ViewTransition name="crossfade">
             <article className="prose relative">
               {children}
