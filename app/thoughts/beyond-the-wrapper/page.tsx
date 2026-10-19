@@ -158,8 +158,8 @@ export default function BeyondTheWrapper() {
         <p>
           So the move is not to make the agents smarter. It is to pull the
           control structure out of the transcript and into the program, where
-          you can read it, bound it, test it and resume it. I wrote about the
-          single-agent version of this idea in{" "}
+          you can read it, bound it, test it and resume it. The single-agent
+          version of this idea is in{" "}
           <InlineLink href="/thoughts/prompt-engineering-to-control-flow">
             From Prompt Engineering to Control Flow
           </InlineLink>

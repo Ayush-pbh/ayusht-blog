@@ -13,7 +13,19 @@ const elsewhere = [
 ];
 
 export default function Home() {
-  const recent = getAllPosts().slice(0, 3);
+  const posts = getAllPosts();
+  // Pinned posts get their own section, so "recent" means recent and the
+  // pinned ones aren't shown twice.
+  const pinned = posts.filter((post) => post.pinned);
+  const recent = posts.filter((post) => !post.pinned).slice(0, 3);
+
+  const toEntry = (post: (typeof posts)[number]) => ({
+    key: post.slug,
+    href: `/thoughts/${post.slug}`,
+    title: post.title,
+    date: post.date,
+    badges: post.draft ? ["draft"] : [],
+  });
 
   return (
     <>
@@ -80,22 +92,26 @@ export default function Home() {
         </ul>
       </div>
 
+      {pinned.length > 0 && (
+        <section
+          className="rise mt-20"
+          style={{ "--rise-index": 2 } as React.CSSProperties}
+        >
+          <h2 className="text-label mb-4 font-mono text-neutral-400 uppercase">
+            On agent systems
+          </h2>
+          <IndexList entries={pinned.map(toEntry)} />
+        </section>
+      )}
+
       <section
-        className="rise mt-20"
-        style={{ "--rise-index": 2 } as React.CSSProperties}
+        className={pinned.length > 0 ? "rise mt-14" : "rise mt-20"}
+        style={{ "--rise-index": 3 } as React.CSSProperties}
       >
         <h2 className="text-label mb-4 font-mono text-neutral-400 uppercase">
           Recent writing
         </h2>
-        <IndexList
-          entries={recent.map((post) => ({
-            key: post.slug,
-            href: `/thoughts/${post.slug}`,
-            title: post.title,
-            date: post.date,
-            badges: post.draft ? ["draft"] : [],
-          }))}
-        />
+        <IndexList entries={recent.map(toEntry)} />
       </section>
     </>
   );

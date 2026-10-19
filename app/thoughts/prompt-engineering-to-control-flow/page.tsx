@@ -448,7 +448,7 @@ def test_terminal_states_have_no_exits():
           needs a human. The agent gets freedom where freedom helps and walls
           where the consequences live. When several agents need to share those
           walls, the problems change shape again, into bounded cycles,
-          checkpoints and recovery, which I wrote up in{" "}
+          checkpoints and recovery, which is the subject of{" "}
           <InlineLink href="/thoughts/beyond-the-wrapper">
             Beyond the Wrapper
           </InlineLink>

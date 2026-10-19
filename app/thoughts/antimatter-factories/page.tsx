@@ -362,7 +362,7 @@ export default function AntimatterFactories() {
           weakened the magnets at top and bottom, and counted which way the
           atoms escaped. About 80 percent went out of the bottom. Antimatter
           falls down. (If you want the long version of why that question is less
-          silly than it sounds, I wrote one about{" "}
+          silly than it sounds, there is one on{" "}
           <InlineLink href="/thoughts/gravity-is-not-a-force">
             gravity not being a force
           </InlineLink>

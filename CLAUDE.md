@@ -40,6 +40,8 @@ Articles do not render their own footer — `SiteChrome` appends `components/Pos
 
 `/thoughts` and `/projects` share `components/IndexList.tsx`: one ruled row per entry, with the entry's `description` under the title.
 
+The home page lists every `pinned` post under its own heading, then the three newest unpinned posts as "Recent writing", so nothing appears twice. `pinned` therefore decides the home page as well as the top of `/thoughts`.
+
 Each post can carry one `tag` from `POST_TAGS` in `types/index.ts` (Tech, Physics, Space, History, Art). `/thoughts` wraps `IndexList` in `components/ThoughtsIndex.tsx`, a client component that adds the topic filter: buttons are built only from tags some post actually has, the choice is kept in `?tag=` (case-insensitive, so `/thoughts?tag=tech` is a shareable link), and it is written with `history.replaceState` rather than the router so a filter change doesn't fire the page crossfade. The server renders "All", so every post is in the static HTML. `PostHeader` leads its metadata line with the tag, linked back to that filter.
 
 `coverImage` (a 1200×630 file under `public/images/thoughts/`) plus `coverAlt` on a post sets the illustration under the header and becomes the OG/X card through `createMetadata`. It is rendered `unoptimized` on purpose — the illustrations are grain-heavy and a second lossy pass smears them — so encode them for the web before committing. Project pages never show their `coverImage` in the header; `PostHeader` tells a post apart by the `readingTime` key that `getPostBySlug` always sets.

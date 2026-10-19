@@ -22,7 +22,7 @@ const footnotes = [
     id: 1,
     content: (
       <>
-        Ollama library pages, read 20 October 2026:{" "}
+        Ollama library pages, read October 2026:{" "}
         <InlineLink href="https://ollama.com/library/llama3">llama3</InlineLink>{" "}
         (8B and 70B, 8K context, text only, no tools tag, last updated two years
         ago) and{" "}
@@ -339,8 +339,8 @@ def investigate(path: str, max_steps: int = 8) -> str:
           The <InlineCode code="max_steps" /> cap is not paranoia. Every step
           re-sends the whole conversation, and the cost of that grows faster
           than the step count does. Locally that bill is paid in seconds of
-          prefill instead of dollars, but it is the same curve; I went through
-          the arithmetic in{" "}
+          prefill instead of dollars, but it is the same curve; the arithmetic
+          is in{" "}
           <InlineLink href="/thoughts/the-cost-of-autonomy">
             the cost of autonomy
           </InlineLink>

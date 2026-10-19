@@ -27,7 +27,7 @@ const footnotes = [
         <InlineLink href="https://platform.claude.com/docs/en/about-claude/pricing">
           Pricing
         </InlineLink>
-        , read 20 October 2026. Sonnet 5.5 is listed at $2 per million input
+        , read October 2026. Sonnet 5.5 is listed at $2 per million input
         tokens, $2.50 for five-minute cache writes, $0.10 for cache hits and $10
         for output. The same page notes that Claude 4.7 and later use a
         tokenizer producing roughly 30% more tokens for the same text, so
@@ -43,7 +43,7 @@ const footnotes = [
         <InlineLink href="https://platform.claude.com/docs/en/docs/build-with-claude/prompt-caching">
           Prompt caching
         </InlineLink>
-        , read 20 October 2026. The prefix order, the four-breakpoint limit, the
+        , read October 2026. The prefix order, the four-breakpoint limit, the
         20-block lookback, the 512-token minimum on current models, and the
         detail that the five-minute lifetime runs from the start of the request
         all come from this page.
@@ -58,8 +58,8 @@ const footnotes = [
         <InlineLink href="https://developers.openai.com/api/docs/guides/prompt-caching">
           Prompt caching
         </InlineLink>
-        , read 20 October 2026: on by default, 1,024-token minimum on GPT-5.6
-        and later, cached reads at 0.1× the input rate, reported in{" "}
+        , read October 2026: on by default, 1,024-token minimum on GPT-5.6 and
+        later, cached reads at 0.1× the input rate, reported in{" "}
         <InlineCode code="usage.input_tokens_details.cached_tokens" />.
       </>
     ),
@@ -162,7 +162,7 @@ export default function TheCostOfAutonomy() {
         <p>
           And it scales the wrong way. Same agent, same per-step growth: at ten
           steps the input bill on Sonnet 5.5, which lists at $2 per million
-          input tokens as of 20 October 2026,
+          input tokens as of October 2026,
           <FootnoteLink id={1} /> is $0.34. At thirty it is $2.22. At sixty it
           is $8.04. Doubling the step count from thirty to sixty multiplies the
           input bill by about 3.6, because the triangle grows with the square.
@@ -453,8 +453,8 @@ agent_cost(30, 8_000, 2_000, 300, cached=True)   # 0.36`}
           chair. Summarising a log, classifying a diff, extracting the fields
           from a messy tool response: these are narrow jobs with checkable
           outputs, and a small model on your own hardware does them with no
-          per-token bill and no data leaving the machine. I wrote up what that
-          looks like end to end in{" "}
+          per-token bill and no data leaving the machine. What that looks like
+          end to end is in{" "}
           <InlineLink href="/thoughts/local-first-agents">
             local-first agents
           </InlineLink>
