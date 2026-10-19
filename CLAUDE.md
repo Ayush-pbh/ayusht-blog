@@ -40,6 +40,10 @@ Articles do not render their own footer — `SiteChrome` appends `components/Pos
 
 `/thoughts` and `/projects` share `components/IndexList.tsx`: one ruled row per entry, with the entry's `description` under the title.
 
+Each post can carry one `tag` from `POST_TAGS` in `types/index.ts` (Tech, Physics, Space, History, Art). `/thoughts` wraps `IndexList` in `components/ThoughtsIndex.tsx`, a client component that adds the topic filter: buttons are built only from tags some post actually has, the choice is kept in `?tag=` (case-insensitive, so `/thoughts?tag=tech` is a shareable link), and it is written with `history.replaceState` rather than the router so a filter change doesn't fire the page crossfade. The server renders "All", so every post is in the static HTML. `PostHeader` leads its metadata line with the tag, linked back to that filter.
+
+`coverImage` (a 1200×630 file under `public/images/thoughts/`) plus `coverAlt` on a post sets the illustration under the header and becomes the OG/X card through `createMetadata`. It is rendered `unoptimized` on purpose — the illustrations are grain-heavy and a second lossy pass smears them — so encode them for the web before committing. Project pages never show their `coverImage` in the header; `PostHeader` tells a post apart by the `readingTime` key that `getPostBySlug` always sets.
+
 `draft: true` on a post keeps it out of all four in production and marks it `noindex`, while the page still builds and answers on its URL. `getAllPosts()` filters drafts; `getPostBySlug()` deliberately does not, so the draft's own page still resolves. Drafts stay visible in `npm run dev` and on Vercel preview deployments.
 
 The README's instruction to put posts in `components/posts/` is stale — that directory does not exist.

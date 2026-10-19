@@ -1,11 +1,32 @@
 import type { StaticImageData } from "next/image";
 
+/**
+ * The filter row on `/thoughts` is built from whichever of these appear on a
+ * published post, in this order — so a tag with no posts never shows a button.
+ */
+export const POST_TAGS = [
+  "Tech",
+  "Physics",
+  "Space",
+  "History",
+  "Art",
+] as const;
+export type PostTag = (typeof POST_TAGS)[number];
+
 export type Post = {
   slug: string;
   title: string;
   description: string;
   date: string;
+  /** One per post. Drives the filter on `/thoughts` and the label in the header. */
+  tag?: PostTag;
+  /**
+   * A 1200×630 illustration under `public/images/thoughts/`. Doubles as the
+   * OG/X card (see `createMetadata`) and is set under the header on the page.
+   */
   coverImage?: string;
+  /** Required in spirit whenever `coverImage` is set — the art is metaphorical, so say what it shows. */
+  coverAlt?: string;
   /**
    * Floats the post to the top of `/thoughts`, above the reverse-chronological
    * list. For the piece that should be the first thing a visitor sees, whatever

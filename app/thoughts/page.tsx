@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/posts";
-import IndexList from "@/components/IndexList";
+import ThoughtsIndex from "@/components/ThoughtsIndex";
+import { POST_TAGS } from "@/types";
 
 const promise =
   "Agent systems in production — architecture, LLM infrastructure, latency and cost, and the lessons that only arrive after something ships.";
@@ -26,13 +27,15 @@ export default function Thoughts() {
         </p>
       </header>
 
-      <IndexList
+      <ThoughtsIndex
+        tags={POST_TAGS.filter((tag) => posts.some((post) => post.tag === tag))}
         entries={posts.map((post) => ({
           key: post.slug,
           href: `/thoughts/${post.slug}`,
           title: post.title,
           description: post.description,
           date: post.date,
+          tag: post.tag,
           badges: [
             ...(post.pinned ? ["pinned"] : []),
             ...(post.draft ? ["draft"] : []),
