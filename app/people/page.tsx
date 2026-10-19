@@ -16,13 +16,208 @@ export default function People() {
           Their ideas have been faithful companions.
         </p>
       </header>
-      <Ul>
-        <Li>
-          <InlineLink href="https://en.wikipedia.org/wiki/Albert_Einstein">
-            Albert Einstein
-          </InlineLink>
-        </Li>
-        {/* <Li>
+      <section
+        className="rise mb-12"
+        style={{ "--rise-index": 1 } as React.CSSProperties}
+      >
+        <h2 className="text-label mb-4 font-mono text-neutral-400 uppercase">
+          Mathematics
+        </h2>
+        <Ul>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Euclid">
+              Euclid
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Archimedes">
+              Archimedes
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Aryabhata">
+              Aryabhata
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Leonhard_Euler">
+              Leonhard Euler
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">
+              Carl Friedrich Gauss
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Bernhard_Riemann">
+              Bernhard Riemann
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Emmy_Noether">
+              Emmy Noether
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Srinivasa_Ramanujan">
+              Srinivasa Ramanujan
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Kurt_G%C3%B6del">
+              Kurt Gödel
+            </InlineLink>
+          </Li>
+        </Ul>
+      </section>
+      <section
+        className="rise mb-12"
+        style={{ "--rise-index": 2 } as React.CSSProperties}
+      >
+        <h2 className="text-label mb-4 font-mono text-neutral-400 uppercase">
+          Physics
+        </h2>
+        <Ul>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Galileo_Galilei">
+              Galileo Galilei
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Isaac_Newton">
+              Isaac Newton
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Michael_Faraday">
+              Michael Faraday
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/James_Clerk_Maxwell">
+              James Clerk Maxwell
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Ludwig_Boltzmann">
+              Ludwig Boltzmann
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Albert_Einstein">
+              Albert Einstein
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Paul_Dirac">
+              Paul Dirac
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://en.wikipedia.org/wiki/Richard_Feynman">
+              Richard Feynman
+            </InlineLink>
+          </Li>
+        </Ul>
+      </section>
+      <section
+        className="rise mb-12"
+        style={{ "--rise-index": 3 } as React.CSSProperties}
+      >
+        <h2 className="text-label mb-4 font-mono text-neutral-400 uppercase">
+          Engineering & AI
+        </h2>
+        <Ul>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@Fireship">
+              Jeff Delaney
+            </InlineLink>{" "}
+            <span className="text-neutral-400">(Fireship)</span>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@mehulmpt">
+              Mehul Mohan
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@sentdex">
+              Harrison Kinsley
+            </InlineLink>{" "}
+            <span className="text-neutral-400">(sentdex)</span>
+          </Li>
+        </Ul>
+      </section>
+      <section
+        className="rise mb-12"
+        style={{ "--rise-index": 4 } as React.CSSProperties}
+      >
+        <h2 className="text-label mb-4 font-mono text-neutral-400 uppercase">
+          Science & space
+        </h2>
+        <Ul>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@veritasium">
+              Derek Muller
+            </InlineLink>{" "}
+            <span className="text-neutral-400">(Veritasium)</span>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@astrumspace">
+              Alex McColgan
+            </InlineLink>{" "}
+            <span className="text-neutral-400">(Astrum)</span>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@Vsauce">
+              Michael Stevens
+            </InlineLink>{" "}
+            <span className="text-neutral-400">(Vsauce)</span>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@NileRed">
+              Nigel Braun
+            </InlineLink>{" "}
+            <span className="text-neutral-400">(NileRed)</span>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@CleoAbram">
+              Cleo Abram
+            </InlineLink>
+          </Li>
+        </Ul>
+      </section>
+      <section
+        className="rise mb-12"
+        style={{ "--rise-index": 5 } as React.CSSProperties}
+      >
+        <h2 className="text-label mb-4 font-mono text-neutral-400 uppercase">
+          History & storytelling
+        </h2>
+        <Ul>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@SomeGuyWhoKnowsStuff">
+              Some Guy Who Knows Stuff
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@fern-tv">
+              fern
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.youtube.com/@BernardAnimationOfficial">
+              Bernard
+            </InlineLink>
+          </Li>
+        </Ul>
+      </section>
+
+      {/*
+        Earlier list, kept for reference. Move an entry up into a section to
+        publish it.
+      */}
+      {/* <Li>
           <InlineLink href="https://andymatuschak.org/">
             Andy Matuschak
           </InlineLink>{" "}
@@ -221,11 +416,6 @@ export default function People() {
           (<InlineLink href="https://x.com/RayDalio">twitter</InlineLink>)
         </Li>
         <Li>
-          <InlineLink href="https://en.wikipedia.org/wiki/Richard_Feynman">
-            Richard Feynman
-          </InlineLink>
-        </Li>
-        <Li>
           <InlineLink href="https://www.tetragrammaton.com/">
             Rick Rubin
           </InlineLink>{" "}
@@ -260,7 +450,6 @@ export default function People() {
           </InlineLink>{" "}
           (<InlineLink href="https://x.com/vitalikbuterin">twitter</InlineLink>)
         </Li> */}
-      </Ul>
     </div>
   );
 }
