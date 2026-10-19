@@ -126,7 +126,7 @@ export default function People() {
         style={{ "--rise-index": 3 } as React.CSSProperties}
       >
         <h2 className="text-label mb-4 font-mono text-neutral-400 uppercase">
-          Engineering & AI
+          Tech & Business
         </h2>
         <Ul>
           <Li>
@@ -145,6 +145,16 @@ export default function People() {
               Harrison Kinsley
             </InlineLink>{" "}
             <span className="text-neutral-400">(sentdex)</span>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.linkedin.com/in/laatonwalabhoot/">
+              Aishwarya Raj Pandey
+            </InlineLink>
+          </Li>
+          <Li>
+            <InlineLink href="https://www.linkedin.com/in/bahularora/">
+              Bahul Arora
+            </InlineLink>
           </Li>
         </Ul>
       </section>
