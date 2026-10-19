@@ -1,7 +1,9 @@
+import Image from "next/image";
 import InlineLink from "@/components/InlineLink";
 import IndexList from "@/components/IndexList";
 import { feedConfig } from "@/lib/feedConfig";
 import { getAllPosts } from "@/lib/posts";
+import portrait from "@/public/images/ayush.webp";
 
 const elsewhere = [
   { label: "Twitter", href: feedConfig.xUrl },
@@ -15,6 +17,29 @@ export default function Home() {
 
   return (
     <>
+      {/*
+        In the margin beside the masthead on a wide screen — the same column
+        the sidenotes use, so the photo reads as part of the spread rather than
+        as a header. Below xl there is no margin to sit in, so it falls back
+        into the flow above the name.
+      */}
+      <figure className="rise xs:w-36 mb-10 w-32 xl:absolute xl:top-2 xl:left-full xl:mb-0 xl:ml-14 xl:w-56">
+        <Image
+          src={portrait}
+          alt="Ayush Tripathi, seated in an office."
+          placeholder="blur"
+          /*
+            Served exactly as encoded. next/image would otherwise re-compress
+            an already-optimised WebP, and a second lossy pass over skin tones
+            is visible at this size. The file is 143KB, so there is nothing
+            left for the optimiser to win.
+          */
+          unoptimized
+          className="w-full border border-neutral-200"
+          priority
+        />
+      </figure>
+
       <div className="rise">
         <h1 className="text-title md:text-display font-serif text-neutral-900">
           Ayush Tripathi
