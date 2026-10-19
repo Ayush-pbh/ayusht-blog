@@ -1,3 +1,4 @@
+import ActiveReadingTime from "@/components/ActiveReadingTime";
 import { PostHeader } from "@/components/PostHeader";
 import BlogJsonLd from "@/components/BlogJsonLd";
 import { createMetadata } from "@/lib/metadata";
@@ -32,6 +33,7 @@ const footnotes = [
 export default function SeeingMusic() {
   return (
     <FootnotesProvider footnotes={footnotes}>
+      <ActiveReadingTime path="/thoughts/seeing-music" />
       <BlogJsonLd post={post} />
       <PostHeader post={post} />
 
