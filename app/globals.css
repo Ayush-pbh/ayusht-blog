@@ -540,6 +540,35 @@
   }
 }
 
+/*
+ * A title in transit. The group carries it from its row to the headline; the
+ * two snapshots keep their natural size and crossfade inside it, so small
+ * list type and display type never get stretched into each other.
+ */
+@supports (view-transition-name: none) {
+  @media not (prefers-reduced-motion: reduce) {
+    ::view-transition-group(.title-morph) {
+      animation-duration: 0.55s;
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    ::view-transition-old(.title-morph),
+    ::view-transition-new(.title-morph) {
+      inline-size: auto;
+      block-size: auto;
+      animation-duration: 0.35s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(.title-morph),
+    ::view-transition-old(.title-morph),
+    ::view-transition-new(.title-morph) {
+      animation: none;
+    }
+  }
+}
+
 @keyframes hide {
   0% {
     opacity: 1;
