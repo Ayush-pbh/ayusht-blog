@@ -12,6 +12,8 @@ npm run lint     # next lint (eslint)
 npx prettier --write .   # format
 ```
 
+`npm run dev` and `npm run build` share the `.next` folder. Stop the dev server before building: run alongside it, the build can fail with `Cannot find module` errors, and the dev server is left serving pages without CSS until it restarts.
+
 There is no test framework in this repo. A husky `pre-commit` hook runs `lint-staged`: eslint on JS/TS, prettier on everything else.
 
 ## Architecture
