@@ -25,6 +25,9 @@ const posts: Post[] = [
       "A chain of prompts can't loop; a graph can. Most multi-agent failures are distributed-systems bugs, and the fix is bounded cycles, error edges, checkpoints and idempotent side effects. Often the right number of agents is one.",
     date: "Oct 20, 2026",
     tag: "Tech",
+    coverImage: "/images/thoughts/beyond-the-wrapper.webp",
+    coverAlt:
+      "A looping toy railway whose carriages are carved birds, with a gate closed across the loop and one carriage resting in a sand-filled siding.",
   },
   {
     slug: "the-cost-of-autonomy",
@@ -34,6 +37,9 @@ const posts: Post[] = [
       "Agent loops re-send their whole context on every step, so the bill grows with the square of the step count. The arithmetic, what prompt caching does to it, and why semantic caching is a trap inside the loop.",
     date: "Oct 20, 2026",
     tag: "Tech",
+    coverImage: "/images/thoughts/the-cost-of-autonomy.webp",
+    coverAlt:
+      "A small figure climbs a staircase made of ever-taller paper stacks, re-reading a long scroll that trails down to the first step.",
   },
   {
     slug: "local-first-agents",
@@ -42,6 +48,9 @@ const posts: Post[] = [
       "A background refactoring daemon on a laptop: a local Ollama tool loop, a JSON schema the model must answer in, and Python's ast doing every edit. The model decides what to change; the tree does the typing.",
     date: "Oct 20, 2026",
     tag: "Tech",
+    coverImage: "/images/thoughts/local-first-agents.webp",
+    coverAlt:
+      "A bespectacled owl on a lamp-lit bonsai ties blank paper slips to twigs while pruning shears lie unused beside the pot.",
   },
   {
     slug: "tool-use-vs-hallucination",
@@ -51,6 +60,9 @@ const posts: Post[] = [
       "Broken JSON and made-up function names are mostly a solved problem now. What's left is worse: valid calls that are wrong. Grammars guarantee shape, not meaning, so the real work is semantic validation and fallbacks.",
     date: "Oct 20, 2026",
     tag: "Tech",
+    coverImage: "/images/thoughts/tool-use-vs-hallucination.webp",
+    coverAlt:
+      "Tweezers hold a jigsaw piece above a seascape puzzle; the piece fits the gap's shape but shows striped fur from another picture.",
   },
   {
     slug: "prompt-engineering-to-control-flow",
@@ -60,6 +72,9 @@ const posts: Post[] = [
       "The bug isn't treating the model like a chat buddy; it's letting the transcript be the program. Let the model turn messages into events, let a state machine decide what happens, and test the table rather than the prompt.",
     date: "Oct 20, 2026",
     tag: "Tech",
+    coverImage: "/images/thoughts/prompt-engineering-to-control-flow.webp",
+    coverAlt:
+      "A wooden board game of grooved square tiles with one brass token, a wild garden walled inside one tile and a crumpled scroll set aside.",
   },
   {
     slug: "quantum-measurement-paradox",
@@ -69,6 +84,9 @@ const posts: Post[] = [
       "Nothing in quantum mechanics waits for you to look, and the delayed-choice eraser doesn't rewrite the past. What survives, Bell's theorem, is stranger than the myth.",
     date: "Oct 20, 2026",
     tag: "Physics",
+    coverImage: "/images/thoughts/quantum-measurement-paradox.webp",
+    coverAlt:
+      "Blank playing cards lift and flip in a draught on a small table before an empty armchair holding a pair of reading glasses.",
   },
   {
     slug: "antimatter-factories",
@@ -78,6 +96,9 @@ const posts: Post[] = [
       "A microgram of antimatter would make a 43-kilogram-of-TNT bang, not an apocalypse, and CERN has made nanograms in half a century. The real feat is keeping a hundred antiprotons alive for a year.",
     date: "Oct 20, 2026",
     tag: "Physics",
+    coverImage: "/images/thoughts/antimatter-factories.webp",
+    coverAlt:
+      "A huge industrial hall of pipes and gantries converges on a small bell jar in which a few tiny points of light float.",
   },
   {
     slug: "gravity-is-not-a-force",
@@ -87,6 +108,9 @@ const posts: Post[] = [
       "What you feel as weight is the floor pushing you off a geodesic. For slow objects gravity is almost entirely the curvature of time, and the part you can't make vanish by falling is a millionth of g.",
     date: "Oct 20, 2026",
     tag: "Physics",
+    coverImage: "/images/thoughts/gravity-is-not-a-force.webp",
+    coverAlt:
+      "A man falls calmly beside drifting apples and a teacup, while below a standing man is pushed up by small hands rising from the floor.",
   },
   {
     slug: "maxwells-demon",
@@ -96,6 +120,9 @@ const posts: Post[] = [
       "Forgetting one bit costs at least kT ln 2, about 2.9 × 10⁻²¹ J at room temperature. It's been measured on a bead, an electron and a nanomagnet, and your laptop pays 10⁴ to 10⁹ times that for reasons unrelated to it.",
     date: "Oct 20, 2026",
     tag: "Physics",
+    coverImage: "/images/thoughts/maxwells-demon.webp",
+    coverAlt:
+      "A tiny doorman at a trapdoor between two chambers of beads erases his notebook as warm wisps rise from the eraser crumbs.",
   },
   {
     slug: "quantum-tunneling-in-biology",
@@ -105,6 +132,9 @@ const posts: Post[] = [
       "Enzymes really do tunnel hydrogen through barriers. Birds probably use spin chemistry, smell-by-vibration is still a long shot, and the famous photosynthesis coherence didn't hold up.",
     date: "Oct 20, 2026",
     tag: "Physics",
+    coverImage: "/images/thoughts/quantum-tunneling-in-biology.webp",
+    coverAlt:
+      "A small glowing bead passes straight through a dense leafy hedge while a slightly larger twin bead waits at its foot.",
   },
   {
     slug: "mapping-the-invisible",
@@ -114,6 +144,9 @@ const posts: Post[] = [
       "Visible light is one octave out of about forty. The best of multi-wavelength astronomy isn't the pretty composites, it's what turns up when two bands disagree, and the ageing telescopes that make that possible.",
     date: "Oct 20, 2026",
     tag: "Space",
+    coverImage: "/images/thoughts/mapping-the-invisible.webp",
+    coverAlt:
+      "Overlapping translucent sheets, each with a partial pattern, form a clear nebula where they align; a weathered hand holds an old creased one.",
   },
   {
     slug: "the-fermi-paradox-is-wrong",
@@ -123,6 +156,9 @@ const posts: Post[] = [
       "Minds that outgrow biology have little reason to broadcast, which explains the radio silence. They still have to dump heat, though, and the infrared sky is quiet too.",
     date: "Oct 20, 2026",
     tag: "Space",
+    coverImage: "/images/thoughts/the-fermi-paradox-is-wrong.webp",
+    coverAlt:
+      "An antique gramophone horn on a tripod points at a starry night sky in which one patch ripples with a faint heat shimmer.",
   },
   {
     slug: "rogue-planets",
@@ -132,6 +168,9 @@ const posts: Post[] = [
       "Microlensing hints at trillions of planets with no star, give or take a factor of five. How they get thrown out, how you weigh something that never shines, and whether one could keep an ocean warm.",
     date: "Oct 20, 2026",
     tag: "Space",
+    coverImage: "/images/thoughts/rogue-planets.webp",
+    coverAlt:
+      "A small dark planet drifts alone through a dense star field, bending one background star's light into a thin bright ring around it.",
   },
   {
     slug: "titan-and-enceladus",
@@ -141,6 +180,9 @@ const posts: Post[] = [
       "Enceladus sprays its ocean into space, Titan is a chemistry lab, and Mars has the best clue with no ride home. Why a second genesis in Saturn's moons would teach us more than a Martian fossil.",
     date: "Oct 20, 2026",
     tag: "Space",
+    coverImage: "/images/thoughts/titan-and-enceladus.webp",
+    coverAlt:
+      "A small icy moon shaped like a perfume atomiser sprays mist from its pole while a gloved hand holds a glass vial in the plume.",
   },
   {
     slug: "the-ultimate-fate-of-the-cosmos",
@@ -150,6 +192,9 @@ const posts: Post[] = [
       "Heat death, the Big Rip and vacuum decay all hinge on a couple of measured numbers. New DESI data hint that dark energy is weakening, which makes the most violent ending less likely.",
     date: "Oct 20, 2026",
     tag: "Space",
+    coverImage: "/images/thoughts/the-ultimate-fate-of-the-cosmos.webp",
+    coverAlt:
+      "A tiny figure stands on a vast open book, gazing up as its blank final pages lift and dissolve into stars.",
   },
   {
     slug: "bronze-age-supply-chain-collapse",
@@ -159,6 +204,9 @@ const posts: Post[] = [
       "The Bronze Age world didn't fall because the tin stopped. Drought, hunger and raiders hit a tightly coupled system with no slack left, and trade spread every failure to every kingdom.",
     date: "Oct 20, 2026",
     tag: "History",
+    coverImage: "/images/thoughts/bronze-age-supply-chain-collapse.webp",
+    coverAlt:
+      "A hanging mobile of tiny ships, palaces and ingots stays balanced with one ship missing while several threads fray at once.",
   },
   {
     slug: "the-geopolitics-of-guano",
@@ -168,6 +216,9 @@ const posts: Post[] = [
       "Peru ran a state on bird droppings, Spain seized them as a hostage, and Chile fought for what replaced them. The dependency ended in a chemistry lab, not on a battlefield.",
     date: "Oct 20, 2026",
     tag: "History",
+    coverImage: "/images/thoughts/the-geopolitics-of-guano.webp",
+    coverAlt:
+      "A round-bottomed flask on a chemistry bench holds a tiny rocky island crowded with seabirds and circled by sailing warships.",
   },
   {
     slug: "information-monopoly",
@@ -177,6 +228,9 @@ const posts: Post[] = [
       "The press, the telegraph and the internet each broke an information monopoly, then built a new one at the bottleneck. Keeping power spread out has always been a political job, not a technical one.",
     date: "Oct 20, 2026",
     tag: "History",
+    coverImage: "/images/thoughts/information-monopoly.webp",
+    coverAlt:
+      "Paper boats crowd a river toward one small lock gate with a seated gatekeeper; broken, larger old gates lie on the banks upstream.",
   },
   {
     slug: "megaprojects-of-antiquity",
@@ -186,6 +240,9 @@ const posts: Post[] = [
       "No lost secrets: the Pyramids, the Nîmes aqueduct and Angkor were built with boats, bread, careful surveying and decades of patient logistics, and the hard part then was the same as now.",
     date: "Oct 20, 2026",
     tag: "History",
+    coverImage: "/images/thoughts/megaprojects-of-antiquity.webp",
+    coverAlt:
+      "A half-built pop-up paper pyramid rises from an open papyrus logbook, with tiny boats carrying blocks along a reed canal across its pages.",
   },
   {
     slug: "the-paper-route",
@@ -195,6 +252,9 @@ const posts: Post[] = [
       "Pacioli didn't invent double entry, and ledgers didn't invent capitalism. What they did was make trust portable: a checksum on commerce that catches carelessness but not bad judgement.",
     date: "Oct 20, 2026",
     tag: "History",
+    coverImage: "/images/thoughts/the-paper-route.webp",
+    coverAlt:
+      "A long bridge of stacked paper, letters and ledgers arches across a calm sea between two harbour towns as small merchants cross it.",
   },
   {
     slug: "seeing-music",
