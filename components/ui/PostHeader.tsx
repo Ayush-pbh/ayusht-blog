@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_ViewTransition as ViewTransition } from "react";
 import type { Post, Project } from "@/types";
 import { H1 } from "@/components/Headings";
+import { titleTransitionName } from "@/lib/transitions";
 
 /**
  * The head of an article. The title takes the display size and the metadata
@@ -18,11 +20,14 @@ export function PostHeader({ post }: { post: Post | Project }) {
   // the key, and nothing builds a Project with it.
   const cover = "readingTime" in post ? post.coverImage : undefined;
   const coverAlt = "coverAlt" in post ? post.coverAlt : undefined;
+  const href = `${"readingTime" in post ? "/thoughts" : "/projects"}/${post.slug}`;
 
   return (
     <>
       <header className="rise mb-12 border-b border-neutral-200 pb-6">
-        <H1 className="mb-0">{post.title}</H1>
+        <ViewTransition name={titleTransitionName(href)} share="title-morph">
+          <H1 className="mb-0">{post.title}</H1>
+        </ViewTransition>
 
         <p className="text-label mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-neutral-400 uppercase">
           {draft && (
