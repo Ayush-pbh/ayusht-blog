@@ -4,7 +4,7 @@ const { readFileSync } = require("node:fs");
 const { runInNewContext } = require("node:vm");
 const ts = require("typescript");
 
-function mount() {
+function mount(path = "/thoughts/seeing-music") {
   let now = 0;
   let focused = true;
   let interval;
@@ -56,7 +56,7 @@ function mount() {
       },
     },
   });
-  module.exports.default({ path: "/thoughts/seeing-music" });
+  module.exports.default({ path });
   return {
     events,
     advance(ms) {
@@ -77,6 +77,13 @@ function mount() {
     blur() {
       focused = false;
       listeners.get("blur")();
+    },
+    // A client-side navigation: React runs the old effect's cleanup, then the
+    // effect again with the new path, all in the same document and clock.
+    navigate(to) {
+      cleanup();
+      assert.equal(listeners.size, 0);
+      module.exports.default({ path: to });
     },
     cleanup() {
       cleanup();
@@ -128,4 +135,18 @@ test("pagehide and subsequent cleanup do not duplicate a delta", () => {
   reader.advance(10000);
   reader.cleanup();
   assert.equal(total(reader), 7);
+});
+
+test("navigation attributes time to the page it was spent on", () => {
+  const reader = mount("/thoughts");
+  reader.advance(20000);
+  reader.navigate("/thoughts/antimatter-factories");
+  reader.advance(10000);
+  reader.cleanup();
+  const byPath = (path) =>
+    reader.events
+      .filter((event) => event.path === path)
+      .reduce((sum, event) => sum + event.seconds, 0);
+  assert.equal(byPath("/thoughts"), 20);
+  assert.equal(byPath("/thoughts/antimatter-factories"), 10);
 });

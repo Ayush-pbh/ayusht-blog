@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { unstable_ViewTransition as ViewTransition } from "react";
+import ActiveReadingTime from "@/components/ActiveReadingTime";
 import Nav from "@/components/Nav";
 import PostFooter from "@/components/PostFooter";
 import SiteFooter from "@/components/SiteFooter";
@@ -27,7 +28,12 @@ export default function SiteChrome({
   const pathname = usePathname();
 
   if (STANDALONE_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
-    return <>{children}</>;
+    return (
+      <>
+        <ActiveReadingTime path={pathname} />
+        {children}
+      </>
+    );
   }
 
   /** `/thoughts/<slug>`, but not the `/thoughts` index itself. */
@@ -44,6 +50,13 @@ export default function SiteChrome({
       <div className="xs:flex-row flex flex-1 flex-col">
         <Nav />
         <main className="xs:border-l xs:border-neutral-200 xs:pl-8 relative w-full min-w-0 sm:max-w-[38rem] md:pl-14">
+          {/*
+            One tracker for every page. It is keyed on the route, so a
+            navigation flushes the time spent on the old page under the old
+            path before the new page starts counting. usePathname carries no
+            query string, so /thoughts?tag=tech is still /thoughts.
+          */}
+          <ActiveReadingTime path={pathname} />
           {article && <div className="read-progress" aria-hidden="true" />}
           <ViewTransition name="crossfade">
             <article className="prose relative">

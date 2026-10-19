@@ -6,7 +6,10 @@ import { track } from "@vercel/analytics";
 const IDLE_MS = 60_000;
 const REPORT_MS = 15_000;
 
-/** Best-effort engagement estimate, not proof that someone read the article. */
+/**
+ * Best-effort engagement estimate, not proof that someone read the page.
+ * Mounted once, in `SiteChrome`, with the current route as `path`.
+ */
 export default function ActiveReadingTime({ path }: { path: string }) {
   useEffect(() => {
     let lastActivity = performance.now();
