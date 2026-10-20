@@ -10,6 +10,17 @@ const showDrafts =
   process.env.NODE_ENV !== "production" || process.env.VERCEL_ENV === "preview";
 
 const posts: Post[] = [
+  {
+    slug: "gpt-4o-retirement",
+    title: "GPT-4o Is Retiring. Its Replacement Costs 22× Less.",
+    description:
+      "GPT-4o, 4o mini, 4.1 and 4.1 mini stop working on 14 January 2027. Every one of them now loses to something cheaper on price and quality at once — here is what to switch to, with the latency and cost charts, and where the swap can still bite.",
+    date: "Oct 20, 2026",
+    tag: "Tech",
+    coverImage: "/images/thoughts/gpt-4o-retirement.webp",
+    coverAlt:
+      "A large halftone circle sinking below a horizon on the left, with a small bright dot rising just above it on the right.",
+  },
   //{
   //  slug: "ai-is-inevitable",
   //  title: "AI is Inevitable",

@@ -56,6 +56,16 @@
   --color-accent: #9c3517;
   --color-accent-strong: #7f2a11;
 
+  /*
+   * Charts use the emphasis pattern: one ink for the subject, gray for the
+   * context. Light mode is the accent itself; dark mode needs its own pair,
+   * validated with the dataviz palette checks against the dark paper — the
+   * apricot accent sits just above the dark lightness band and too close to
+   * the mid gray.
+   */
+  --color-chart-emph: #9c3517;
+  --color-chart-context: #827f77;
+
   --color-blue-50: #f5f7fa;
   --color-blue-100: #ebf1f7;
   --color-blue-200: #d6e4f5;
@@ -104,6 +114,9 @@
 
     --color-accent: #e08a63;
     --color-accent-strong: #eda483;
+
+    --color-chart-emph: #d27650;
+    --color-chart-context: #6a665f;
   }
 
   /*
@@ -131,6 +144,9 @@
 
   --color-accent: #e08a63;
   --color-accent-strong: #eda483;
+
+  --color-chart-emph: #d27650;
+  --color-chart-context: #6a665f;
 }
 
 :root[data-theme="dark"] [data-rehype-pretty-code-figure] span,
